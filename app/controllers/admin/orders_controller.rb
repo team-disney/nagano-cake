@@ -1,18 +1,17 @@
 class Admin::OrdersController < ApplicationController
   def index
       @orders = Order.all
-      # s
   end
 
   def update
-      @admin_order = Order.find(params[:id])
+      @order = Order.find(params[:id])
       @order.update(admin_order_params)
   end
-  end
 
-  
   def show
-      @order_detail = Order_detail.find(params[:id])
+      @order = Order.find(params[:id])
+      @order_detail = @order.order_detail
+
   end
   def change
       create_table :articles do |t|

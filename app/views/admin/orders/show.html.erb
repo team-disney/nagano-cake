@@ -1,45 +1,47 @@
+<%# ヘッダーが入る %>
 <h1>注文詳細画面</h1>
-<table>
+<table class='table table-hover table-inverse'>
   <thead>
     <tr>
       <th>購入者</th>
       <%= @order.name %>
   </tr>
   <tr>
-    <th>配送先</th>
-    <%= @order.address %>
+      <th>配送先</th>
+      <%= @order.zipcode %>
+      <%= @order.address %>
   </tr>
   <tr>
-    <th>支払方法</th>
-    <%= @order.payment_method %>
+      <th>支払方法</th>
+      <%= @order.payment_method %>
   </tr>
   <tr>
-    <th>注文ステータス</th>
-    <%= select :status,:name,Order.statuses.keys.to_a %>
-    <%= select :status,:name,Order.statuses.values.to_a %>
-  </tr>
-  <br>
-  <tr>
-    <th>商品名</th>
-    <th>単価(税込)</th>
-    <th>数量</th>
-    <th>小計</th>
-    <th>制作ステータス</th>
-    
+     <th>注文ステータス</th>
+     <%= select :status,:name,Order.statuses.keys.to_a %>
+     <%= select :status,:name,Order.statuses.values.to_a %>
   </tr>
   </thead>
-
   <tbody>
-	  <% @order_details.each do |order_detail| %>
   <tr>
-		<td><%= item.item_name %></td>
-		<td><%= item.price %></td>
-		<td><%= item.amount %></td>
-		<td><%= (item.price).to_i %>円</td>
-    <%= select :status,:name,Order_detail.statuses.keys.to_a %>
-    <%= select :status,:name,Order_detail.statuses.values.to_a %>
+     <th>商品名</th>
+     <th>単価(税込)</th>
+     <th>数量</th>
+     <th>小計</th>
+     <th>制作ステータス</th> 
+  </tr>
+     <% @order.each do |order| %>
+  <tr>
+		 <td><%= item.item_name %></td>
+		 <td><%= item.price %></td>
+		 <td><%= item.amount %></td>
+		 <td><%= (item.price).to_i %>円</td>
+     <%= select :status,:name,Order_detail.statuses.keys.to_a %>
+     <%= select :status,:name,Order_detail.statuses.values.to_a %>
   </tr>
 	<% end %>
-  <%# aa %>
   </tbody>
-</table>
+  <th>商品合計</th>
+  <th>送料</th>
+  <th>請求合計金額</th>
+
+</table> 
