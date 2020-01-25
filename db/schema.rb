@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_25_111645) do
+ActiveRecord::Schema.define(version: 2020_01_25_114702) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string "name"
-    t.string "zipcode"
-    t.string "address"
-    t.integer "end_user_id"
+    t.string "name", null: false
+    t.string "zipcode", null: false
+    t.string "address", null: false
+    t.integer "end_user_id", null: false
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 2020_01_25_111645) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "end_user_id"
-    t.integer "item_id"
-    t.integer "amount"
+    t.integer "end_user_id", null: false
+    t.integer "item_id", null: false
+    t.integer "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,43 +63,43 @@ ActiveRecord::Schema.define(version: 2020_01_25_111645) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
-    t.integer "genres_status"
+    t.string "name", null: false
+    t.integer "genres_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.integer "genres_id"
-    t.integer "item_status"
-    t.text "caption"
-    t.integer "price"
-    t.string "image_id"
+    t.string "name", null: false
+    t.integer "genres_id", null: false
+    t.integer "item_status", null: false
+    t.text "caption", null: false
+    t.integer "price", null: false
+    t.string "image_id", null: false
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "order_details", force: :cascade do |t|
-    t.string "item_name"
-    t.integer "amount"
-    t.integer "price"
-    t.integer "production_status"
+    t.string "item_name", null: false
+    t.integer "amount", null: false
+    t.integer "price", null: false
+    t.integer "production_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "end_user_id"
-    t.string "name"
-    t.string "zipcode"
-    t.string "address"
-    t.integer "order_status"
-    t.integer "sum_price"
-    t.integer "shipping_price"
-    t.integer "payment_price"
-    t.integer "payment_method"
+    t.integer "end_user_id", null: false
+    t.string "name", null: false
+    t.string "zipcode", null: false
+    t.string "address", null: false
+    t.integer "order_status", null: false
+    t.integer "sum_price", null: false
+    t.integer "shipping_price", null: false
+    t.integer "payment_price", null: false
+    t.integer "payment_method", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
