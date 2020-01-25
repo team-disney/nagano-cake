@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  genres_id: 1
+  item_status: 1
+  caption: MyText
+  price: 1
+  image_id: MyString
+  deleted_at: 2020-01-25 07:01:09
+
+two:
+  name: MyString
+  genres_id: 1
+  item_status: 1
+  caption: MyText
+  price: 1
+  image_id: MyString
+  deleted_at: 2020-01-25 07:01:09
