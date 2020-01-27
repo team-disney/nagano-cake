@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'homes#index'
   # end＿user, admin＿users の devise の routing
   devise_for :admin_users, controllers: {
     sessions:      'admin_users/sessions',
