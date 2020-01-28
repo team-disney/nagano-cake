@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_091213) do
+ActiveRecord::Schema.define(version: 2020_01_28_045819) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "name", null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_091213) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "status", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_091213) do
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.integer "genre_id", null: false
-    t.integer "status", null: false
+    t.integer "status", default: 0, null: false
     t.text "caption", null: false
     t.integer "price", null: false
     t.string "image_id", null: false
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_091213) do
     t.string "item_name", null: false
     t.integer "amount", null: false
     t.integer "price", null: false
-    t.integer "production_status", null: false
+    t.integer "production_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,11 +95,11 @@ ActiveRecord::Schema.define(version: 2020_01_27_091213) do
     t.string "name", null: false
     t.string "zipcode", null: false
     t.string "address", null: false
-    t.integer "status", null: false
+    t.integer "status", default: 0, null: false
     t.integer "sum_price", null: false
     t.integer "shipping_price", null: false
     t.integer "payment_price", null: false
-    t.integer "payment_method", null: false
+    t.integer "payment_method", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
