@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
+
+  # ROOT
   root 'homes#index'
-  # end＿user, admin＿users の devise の routing
+
+  # END_USERS
+  resources :items, only: [:index, :show]
+
+  # ADMIN_USERS
+  namespace :admin do
+    resources :items, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  end
+  
+  # DEVISES
   devise_for :admin_users, controllers: {
     sessions:      'admin_users/sessions',
     passwords:     'admin_users/passwords',
