@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
+    resources :genres, only: [:index, :edit, :update, :create]
   end
   root 'homes#index'
   # end＿user, admin＿users の devise の routing

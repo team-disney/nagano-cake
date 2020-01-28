@@ -5,16 +5,8 @@ class Admin::GenresController < ApplicationController
     @genres = Genre.all
   end
 
-  def edit
-    @genre = Genre.find(params[:id])
-    if @genre.user_id != current_user.id
-      redirect_to root_path
-    end
-  end
-
   def create
     @genre = Genre.new(genre_params)
-    @genre.user = current_user
     if @genre.save
       redirect_to genres_index_path(@genres), notice: "You have creatad genre successfully."
     else
@@ -22,6 +14,15 @@ class Admin::GenresController < ApplicationController
       render action: :index
     end
   end
+
+  def edit
+    @genre = Genre.find(params[:id])
+    if @genre.user_id != current_user.id
+      redirect_to root_path
+    end
+  end
+
+  
 
   def update
     if @genre.update(genre_params)
