@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
-
-  # ROOT
+  # TOP PAGE ROUTING
   root 'homes#index'
 
-  # ADMIN_USERS
+  # ADMIN-PAGE ROUTINGS
   namespace :admin do
     resources :items, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   end
   
-  # END_USERS
+  # EC-PAGE ROUTINGS
   resources :items, only: [:index, :show]
-
+  resources :genres, only: [:show]
   
-  # DEVISES
+  # DEVISE ROUTINGS
   devise_for :admin_users, controllers: {
     sessions:      'admin_users/sessions',
     passwords:     'admin_users/passwords',
