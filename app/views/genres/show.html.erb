@@ -2,13 +2,13 @@
 <%# YOU CAN USE INSTANCE VARIABLES/METHODS DOWNBELOW
     @genre
     @active_genres
-    .id
-    .name
-    .genre_id
-    .status
-    .caption
-    .price
-    .image_id
+      .id
+      .name
+      .genre_id
+      .status
+      .caption
+      .price
+      .image_id
 %>
 <%# NOTICE %>
 <div class="row">
@@ -20,10 +20,18 @@
   <div class="col-md-2">
     <div class="item-filter-list-group" style="max-width: 400px;">
       <div class="list-group-item list-group-item-action">ジャンル検索</div>
-      <div class="list-group-item list-group-item-action">すべて</div>
+      <%= link_to items_path, class: "list-group-item list-group-item-action" do %>
+        <span>すべての商品</span>
+      <% end %>
       <% @active_genres.each do | active_genre | %>
-        <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action" do %>
-          <span><%= active_genre.name %></span>
+        <% if active_genre.id == @genre.id %>
+          <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action active" do %>
+            <span><%= active_genre.name %></span>
+          <% end %>
+        <% else %>
+          <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action" do %>
+            <span><%= active_genre.name %></span>
+          <% end %>
         <% end %>
       <% end %>
     </div>

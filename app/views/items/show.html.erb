@@ -1,28 +1,54 @@
 <%# ITEM SHOW --- ITEM DETAILS %>
 <%# YOU CAN USE INSTANCE VARIABLES/METHODS DOWNBELOW
     @item
-    .id
-    .name
-    .genre_id
-    .status
-    .caption
-    .price
-    .image_id
+      .id
+      .name
+      .genre_id
+      .status
+      .caption
+      .price
+      .image_id
+    @add_cart_item
+      .end_user_id
+      .item_id
+      .amount
 %>
-<div class="container">
-  <%# NOTICE %>
+<%# NOTICE %>
+<div class="row">
   <p id="notice"></p>
-  <%# CONTENT %>
+</div>
+<%# CONTENT %>
+<%# ITEM FILTER %>
+<div class="col-md-2">
+  <div class="item-filter-list-group" style="max-width: 400px;">
+    <div class="list-group-item list-group-item-action">ジャンル検索</div>
+    <%= link_to items_path, class: "list-group-item list-group-item-action" do %>
+      <span>すべての商品</span>
+    <% end %>
+    <% @active_genres.each do | active_genre | %>
+      <% if active_genre.id == @item.genre.id %>
+        <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action active" do %>
+          <span><%= active_genre.name %></span>
+        <% end %>
+      <% else %>
+        <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action" do %>
+          <span><%= active_genre.name %></span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="col-md-10">
   <%# ITEM DETAILS %>
   <div class="row">
     <%# LEFT --- ITEM IMAGE %>
-    <div class="col-xs-5">
+    <div class="col-md-6">
       <%# 写真 %>
-      <%= attachment_image_tag @item, :image, :fill, 200, 150, format: 'jpeg', class: "attachment item image" %>
+      <%= attachment_image_tag @item, :image, :fill, 400, 280, format: 'jpeg', class: "attachment item image" %>
     </div>
     <%# RIGHT --- ITEM INFORMATION %>
     <%= form_for(@item) do |f| %>
-      <div class="col-xs-5">
+      <div class="col-md-6">
         <div class="row">
           <label class="control-label" for="item_name">商品名</label>
           <p><%= @item.name %></p>
@@ -37,15 +63,14 @@
       </div>
     </div>
   <% end %>
-  <%# AMOUNT SELECT AND CART BUTTON %>
-  <div class="row">
-    <%# ! NEED FIX POST PATH %>
-    <div class="pull-right">
-      <%= form_for(@cart_item, url:root_path) do |f| %>
-        <%= f.select :amount, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], class:'col-xs-12 control-form' %>
-        <%= link_to "カートに入れる", root_path, class:'btn-sm btn-primary' %>
-      <% end %>
-    </div>
-  </div>
 </div>
+<%# AMOUNT SELECT AND CART BUTTON %>
+<div class="row">
+  <%# ! NEED FIX POST PATH %>
+  <div class="pull-right">
+    <%= form_for(@add_cart_item, url:root_path) do |f| %>
+      <%= f.select :amount, (1..10).to_a, class:'col-md-12 control-form' %>
+      <%= link_to "カートに入れる", root_path, class:'btn-sm btn-primary' %>
+    <% end %>
+  </div>
 </div>

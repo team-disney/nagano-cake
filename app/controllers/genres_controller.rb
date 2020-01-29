@@ -1,6 +1,6 @@
 class GenresController < ApplicationController
   def show
-    # IS THIS PAGE GENRE ID?
+    # ONLY GENRE THIS PAGES
     @genre = Genre.find(params[:id])
 
     # ONLY FILTERED ITEMS BY GENRE

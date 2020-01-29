@@ -1,17 +1,30 @@
 class Admin::ItemsController < ApplicationController
   def index
+    # ALL-ITEMS
     @items = Item.all
+    # ALL-GENRES
+    @genres = Genre.all
   end
 
   def show
+    # ONLY ITEM THIS PAGE
     @item = Item.find(params[:id])
   end
 
   def new
+    # MAKE NEW ITEM-REGISTER INSTANCE
     @new_item = Item.new
+
+    # ONLY ACTIVE-GENRES
+    active_genres = Genre.where(status: 1)
+    # AND GENRE-NAMES TO ARRAY --- SELECT GENRES
+    @arrayed_active_genres = active_genres.pluck(:name)
+    # --- SELECT GENRES
+    @arrayed_item_statuses = Item.statuses.keys.to_a
   end
 
   def edit
+    # FIND ITEM-EDIT INSTANCE
     @edit_item = Item.find(params[:id])
   end
 

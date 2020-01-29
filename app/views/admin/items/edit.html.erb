@@ -9,64 +9,67 @@
     .price
     .image_id
 %>
-<div class="container">
-  <%# NOTICE %>
+<%# NOTICE %>
+<div class="row">
   <p id="notice"></p>
-  <%# CONTENT %>
-  <div class="row">
-    <h2>商品編集 (管理者専用)</h2>
-  </div>
-  <%# EDIT ITEM VALIDATION VIEW %>
-  <div class="row">
-    <% if @edit_item.errors.any? %>
-      <div id="error_explanation" class="alert alert-danger">
-        <h2><%= @edit_item.errors.count %> errors prohibited this item from being saved:</h2>
-        <ul>
-          <% @edit_item.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+</div>
+<%# CONTENT %>
+<div class="row">
+  <h2>商品編集 (管理者モード)</h2>
+</div>
+<div class="row">
+  <%= link_to "この商品の詳細へ戻る", admin_item_path(@edit_item), class:'btn-sm btn-primary' %>
+  <%= link_to "管理者商品一覧へ戻る", admin_items_path, class:'btn-sm btn-primary' %>
+</div>
+<%# EDIT ITEM VALIDATION VIEW %>
+<div class="row">
+  <% if @edit_item.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= @edit_item.errors.count %> errors prohibited this item from being saved:</h2>
+      <ul>
+        <% @edit_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+<%# EDIT ITEM REGISTER FORM %>
+<div class="row">
+  <%= form_for(@edit_item, url:admin_item_path) do |f| %>
+    <%# FORM - L --- ITEM IMAGE %>
+    <div class="col-md-5">
+      <div class="field">
+        <%# 写真 %>
+        <%= attachment_image_tag @edit_item, :image, :fill, 400, 300, format: 'jpeg', class: "attachment item image" %>
+        <%= f.attachment_field :image, placeholder: "Item Image", class: "item-image-form" %>
       </div>
-    <% end %>
-  </div>
-  <%# EDIT ITEM REGISTER FORM %>
-  <div class="row">
-    <%= form_for(@edit_item, url:admin_item_path) do |f| %>
-      <%# FORM - L --- ITEM IMAGE %>
-      <div class="col-xs-5">
-        <div class="field">
-          <%# 写真 %>
-          <%= attachment_image_tag @edit_item, :image, :fill, 400, 300, format: 'jpeg', class: "attachment item image" %>
-          <%= f.attachment_field :image, placeholder: "Item Image", class: "item-image-form" %>
-        </div>
+    </div>
+    <%# FORM - R --- ITEM INFORMATION %>
+    <div class="col-md-7">
+      <div class="field row">
+        <%= f.label :name, "商品名", class:"control-label" %>
+        <%= f.text_field :name, class:'col-md-12 control-form' %>
       </div>
-      <%# FORM - R --- ITEM INFORMATION %>
-      <div class="col-xs-7">
-        <div class="field row">
-          <%= f.label :name, "商品名", class:"control-label" %>
-          <%= f.text_field :name, class:'col-xs-12 control-form' %>
-        </div>
-        <div class="field row">
-          <%= f.label :caption, "商品説明", class:"control-label" %>
-          <%= f.text_area :caption, class:'col-xs-12 control-form' %>
-        </div>
-        <div class="field row">
-          <%= f.label :genre_id, "ジャンル !NEED_FIX!", class:"control-label" %>
-          <%= f.number_field :genre_id, class:'col-xs-12 control-form' %>
-        </div>
-        <div class="field row">
-          <%= f.label :price, "税抜価格", class:"control-label" %>
-          <%= f.number_field :price, class:'col-xs-12 control-form' %>
-        </div>
-        <div class="field row">
-          <%= f.label :status, "販売ステータス", class:"control-label" %>
-          <%= f.select :status, Item.statuses.keys.to_a, {}, class:'col-xs-12 control-form' %>
-        </div>
-        <div class="actions row">
-          <%= f.submit '変更を保存', class:'btn btn-primary col-xs-12' %>
-        </div>
+      <div class="field row">
+        <%= f.label :caption, "商品説明", class:"control-label" %>
+        <%= f.text_area :caption, class:'col-md-12 control-form' %>
+      </div>
+      <div class="field row">
+        <%= f.label :genre_id, "ジャンル !NEED_FIX!", class:"control-label" %>
+        <%= f.number_field :genre_id, class:'col-md-12 control-form' %>
+      </div>
+      <div class="field row">
+        <%= f.label :price, "税抜価格", class:"control-label" %>
+        <%= f.number_field :price, class:'col-md-12 control-form' %>
+      </div>
+      <div class="field row">
+        <%= f.label :status, "販売ステータス", class:"control-label" %>
+        <%= f.select :status, Item.statuses.keys.to_a, {}, class:'col-md-12 control-form' %>
+      </div>
+      <div class="actions row">
+        <%= f.submit '変更を保存', class:'btn btn-primary col-md-12' %>
       </div>
     </div>
   <% end %>
-  <%#  %>
 </div>
