@@ -1,39 +1,71 @@
-<%# ADMIN NEW ITEM REGISTER %>
-<h1>商品の新規追加</h1>
-<%# NEW ITEM VALIDATION VIEW %>
-<% if @new_item.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <h2><%= @new_item.errors.count %> errors prohibited this item from being saved:</h2>
-    <ul>
-      <% @new_item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+<%# ADMIN ITEM NEW --- NEW ITEM REGISTER %>
+<%# YOU CAN USE INSTANCE VARIABLES/METHODS DOWNBELOW
+    @new_item
+    .id
+    .name
+    .genre_id
+    .status
+    .caption
+    .price
+    .image_id
+%>
+<div class="container">
+  <%# NOTICE %>
+  <p id="notice"></p>
+  <%# CONTENT %>
+  <div class="row">
+    <h2>商品新規追加 (管理者専用)</h2>
   </div>
-<% end %>
-<%#  %>
-<%# ITEM COLUMNS LIST
-id
-name
-genre_id
-status
-caption
-price
-image_id
- %>
-<%# NEW ITEM REGISTER FORM %>
-<%= form_for(new_item) do |f| %>
-  <div class="field row">
-    <label for="book_title">Title</label>
-    <%= f.text_field :name, class:'col-xs-12 book_title' %>
+  <%# NEW ITEM VALIDATION VIEW %>
+  <div class="row">
+    <% if @new_item.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h2><%= @new_item.errors.count %> errors prohibited this item from being saved:</h2>
+        <ul>
+          <% @new_item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
-  <div class="field row">
-    <label for="book_opinion">Opinion</label>
-    <%= f.text_area :body, class:'col-xs-12 book_body' %>
-  </div>
-  <div class="actions row">
-    <%= f.submit 'Create Book', class:'btn btn-primary col-xs-12' %>
-  </div>
-<% end %>
-<%#  %>
+  <%# NEW ITEM REGISTER FORM %>
+  <div class="row">
+    <%= form_for(@new_item, url:admin_items_path) do |f| %>
+      <%# FORM - L --- ITEM IMAGE %>
+      <div class="col-xs-5">
+        <div class="field">
+          <label for="item_image">Image</label>
+          <%= f.attachment_field :image, placeholder: "Item Image", class: "item-image-form" %>
+        </div>
+      </div>
+      <%# FORM - R --- ITEM INFORMATION %>
+      <div class="col-xs-7">
+        <div class="field row">
+          <%= f.label :name, "商品名", class:"control-label" %>
+          <%= f.text_field :name, class:'col-xs-12 control-form' %>
+        </div>
+        <div class="field row">
+          <%= f.label :caption, "商品説明", class:"control-label" %>
+          <%= f.text_area :caption, class:'col-xs-12 control-form' %>
+        </div>
+        <div class="field row">
+          <%= f.label :genre_id, "ジャンル !NEED_FIX!", class:"control-label" %>
+          <%= f.number_field :genre_id, class:'col-xs-12 control-form' %>
+        </div>
+        <div class="field row">
+          <%= f.label :price, "税抜価格", class:"control-label" %>
+          <%= f.number_field :price, class:'col-xs-12 control-form' %>
+        </div>
+        <div class="field row">
+          <%= f.label :status, "販売ステータス", class:"control-label" %>
+          <%= f.select :status, Item.statuses.keys.to_a, {}, class:'col-xs-12 control-form' %>
+        </div>
+        <div class="actions row">
+          <%= f.submit '新規登録', class:'btn btn-primary col-xs-12' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%#  %>
 </div>

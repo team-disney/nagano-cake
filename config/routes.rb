@@ -3,13 +3,14 @@ Rails.application.routes.draw do
   # ROOT
   root 'homes#index'
 
-  # END_USERS
-  resources :items, only: [:index, :show]
-
   # ADMIN_USERS
   namespace :admin do
     resources :items, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   end
+  
+  # END_USERS
+  resources :items, only: [:index, :show]
+
   
   # DEVISES
   devise_for :admin_users, controllers: {
