@@ -1,0 +1,56 @@
+<h3>マイページ</h3>
+
+    <h3><strong>登録情報</strong>
+        <%= link_to '編集する', edit_end_user_path(current_end_user.id), class:"btn btn-primary" %>
+        <%= link_to 'パスワードを変更する',   end_user_changepassword_path(current_end_user.id), class:"btn btn-primary" %>
+    </h3>
+
+<table>
+    <tr>
+        <td>氏名</td>
+        <td>
+            <%= @end_user.first_name %>
+            <%= @end_user.last_name %>
+        </td>
+    </tr>
+    <tr>
+        <td>カナ</td>
+        <td>
+            <%= @end_user.first_name_kana %>
+            <%= @end_user.last_name_kana %>
+        </td>
+    </tr>
+    <tr>
+        <td>郵便番号</td>
+        <td>
+            <%= @end_user.zipcode %>
+        </td>
+    </tr>
+    <tr>
+        <td>住所</td>
+        <td>
+            <%= @end_user.address %>
+        </td>
+    </tr>
+    <tr>
+        <td>電話番号</td>
+        <td>
+            <%= @end_user.phone_number %>
+        </td>
+    </tr>
+    <tr>
+        <td>メールアドレス</td>
+        <td>
+            <%= @end_user.email %>
+        </td>
+    </tr>
+</table>
+
+<%# 配送先一覧の path を記述（addresses index） %>
+<h3><strong>配送先</strong>　　<%= link_to '一覧を見る', root_path, class:"btn btn-primary" %> </h3>
+<%# 注文履歴一覧の path を記述（orders index） %>
+<h3><strong>注文履歴</strong>　<%= link_to '一覧を見る', root_path, class:"btn btn-primary" %> </h3>
+
+
+<%# 簡易ログアウトボタン。最後は削除する %>
+<%= link_to "簡易ログアウト", destroy_end_user_session_path, method: :delete, class: "glyphicon glyphicon-log-in sign_in" %>
