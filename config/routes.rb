@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:index, :edit, :update, :create]
   end
+  
   root 'homes#index'
   # end＿user, admin＿users の devise の routing
   devise_for :admin_users, controllers: {

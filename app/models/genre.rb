@@ -1,5 +1,7 @@
 class Genre < ApplicationRecord
-  
-  enum status: { invalid: 0, valid: 1 }
+  #ジャンルステータスのenum管理
+  enum status: { "無効": 0, "有効": 1 }
 
+  #ジャンル名の空欄登録を無効化
+  validates :name, presence:true
 end
