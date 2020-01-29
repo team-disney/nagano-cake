@@ -1,2 +1,57 @@
-<h1>Genres#show</h1>
-<p>Find me in app/views/genres/show.html.erb</p>
+<%# GENRE SHOW --- FILTERED ITEM LIST %>
+<%# YOU CAN USE INSTANCE VARIABLES/METHODS DOWNBELOW
+    @genre
+    @active_genres
+    .id
+    .name
+    .genre_id
+    .status
+    .caption
+    .price
+    .image_id
+%>
+<%# NOTICE %>
+<div class="row">
+  <p id="notice"></p>
+</div>
+<%# CONTENT %>
+<div class="row">
+  <%# ITEM FILTER %>
+  <div class="col-md-2">
+    <div class="item-filter-list-group" style="max-width: 400px;">
+      <div class="list-group-item list-group-item-action">ジャンル検索</div>
+      <div class="list-group-item list-group-item-action">すべて</div>
+      <% @active_genres.each do | active_genre | %>
+        <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action" do %>
+          <span><%= active_genre.name %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <%# FILTERED LIST %>
+  <div class="col-md-10">
+    <div class="filtered-genre-titles row">
+      <p>
+        <span class="filtered-genre-name-text"><%= @genre.name %></span>
+        <span class="filtered-number-of-hits-text">全 <%= @filtered_items.count %> 件</span>
+      </p>
+    </div>
+    <%# FILTERED ITEMS %>
+    <div class="filtered col-md-12">
+      <%# ITEM EACH %>
+      <% @filtered_items.each do |item| %>
+        <%= link_to item_path(item) do %>
+          <div class="item col-md-3">
+            <div class="item-image col-md-12">
+              <%= attachment_image_tag item, :image, :fill, 180, 100, format: 'jpeg', class: "item-img" %>
+            </div>
+            <div class="item-info col-md-12">
+              <p class="item-name"><%= item.name %></p>
+            <% end %>
+            <p class="item-price">¥ <%= item.price %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
