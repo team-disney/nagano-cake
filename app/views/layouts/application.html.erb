@@ -10,6 +10,54 @@
   </head>
 
   <body>
+  <%# end_user用のheaderとfooter %>
+    <header>
+      <div class="container">
+        <div class=" navbar-header">
+          <span>ながのCAKE</span>
+        </div>
+          <nav class="nav navbar-nav navbar-right">
+            <%# <% if end_user_signed_in? %>
+              <p class="navbar-text">
+                <span class = "glyphicon glyphicon-user" > ログインさん、こんにちは！</span>
+              </p>
+              <li><%= link_to "トップ", root_path %></li>
+              <li><%= link_to "商品一覧", root_path %></li>
+              <%# <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "カート", root_path, :class => "glyphicon glyphicon-shopping-cart" %></li>
+            <%# <% else %>
+              <p class="navbar-text">
+                <span class = "glyphicon glyphicon-user" > ゲストさん、こんにちは！</span>
+              </p>
+              <li><%= link_to "トップ", root_path %></li>
+              <li><%= link_to "商品一覧", root_path %></li>
+              <%# <li><%= link_to "登録", new_user_registration_path %></li>
+              <%# <li><%= link_to "ログイン", new_user_session_path %></li>
+              <li><%= link_to "カート", root_path, :class => "glyphicon glyphicon-shopping-cart" %></li>
+            <%# <% end %>
+
+            <% if admin_user_signed_in? %>
+              <li><%= link_to "商品一覧", root_path %></li>
+              <li><%= link_to "会員一覧", root_path %></li>
+              <li><%= link_to "注文履歴一覧", root_path %></li>
+              <li><%= link_to "ジャンル管理", root_path %></li>
+            <% else %>
+              
+            <% end %>
+          </nav>
+      </div>
+
+      
+    </header>
+
     <%= yield %>
+
+    <footer>
+      <div class="conteiner">
+      <div class='row'>
+        <div class='col-sm-3 col-sm-offset-9'>
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </div>
+    </footer>
   </body>
-</html>
