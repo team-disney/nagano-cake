@@ -1,0 +1,47 @@
+<%# ADMIN ITEM INDEX --- ALL ITEM LIST %>
+<%# YOU CAN USE INSTANCE VARIABLES/METHODS DOWNBELOW
+    @items
+    .id
+    .name
+    .genre_id
+    .status
+    .caption
+    .price
+    .image_id
+%>
+<%# NOTICE %>
+<div class="row">
+  <p id="notice"></p>
+</div>
+<%# CONTENT %>
+<div class="row">
+  <h2>商品一覧 (管理者モード)</h2>
+</div>
+<div class="row">
+  <%= link_to "新しい商品を登録する", new_admin_item_path, class:'btn-sm btn-primary' %>
+</div>
+<%# ALL ITEM LIST %>
+<div class="row">
+  <table class="table table-bordered table-hover table-striped">
+    <thead>
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item) %></td>
+          <td><%= item.price %></td>
+          <td><%= item.genre.name %> ! NEED_FIX</td>
+          <td><%= item.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

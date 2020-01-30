@@ -1,3 +1,4 @@
 class Address < ApplicationRecord
-    belongs_to :end_user
+  # ASSOCIATIONS
+  belongs_to :end_user
 end
