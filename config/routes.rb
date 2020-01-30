@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+  # CART ITEM-PAGE ROUTINGS
+  resources :cart_items, only: [:index, :input, :display, :thanks, :create, :update, :destroy]
+
   # TOP PAGE ROUTING
   root 'homes#index'
 
