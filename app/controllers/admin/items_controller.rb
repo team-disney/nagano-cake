@@ -18,14 +18,35 @@ class Admin::ItemsController < ApplicationController
     # ONLY ACTIVE-GENRES
     active_genres = Genre.where(status: 1)
     # AND GENRE-NAMES TO ARRAY --- SELECT GENRES
-    @arrayed_active_genres = active_genres.pluck(:name)
-    # --- SELECT GENRES
+    @arrayed_active_genres = []
+    active_genres.each do |active_genre|
+      @arrayed_active_genres.push(
+        [ active_genre.name,
+          active_genre.id ]
+      )
+    end
+
+    # ITEM STATUS TO ARRAY --- SELECT STATUS
     @arrayed_item_statuses = Item.statuses.keys.to_a
   end
 
   def edit
     # FIND ITEM-EDIT INSTANCE
     @edit_item = Item.find(params[:id])
+
+    # ONLY ACTIVE-GENRES
+    active_genres = Genre.where(status: 1)
+    # AND GENRE-NAMES TO ARRAY --- SELECT GENRES
+    @arrayed_active_genres = []
+    active_genres.each do |active_genre|
+      @arrayed_active_genres.push(
+        [ active_genre.name,
+          active_genre.id ]
+      )
+    end
+
+    # ITEM STATUS TO ARRAY --- SELECT STATUS
+    @arrayed_item_statuses = Item.statuses.keys.to_a
   end
 
   def create

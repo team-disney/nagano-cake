@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   
   # EC-PAGE ROUTINGS
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show, :create]
   resources :genres, only: [:show]
   
   # DEVISE ROUTINGS

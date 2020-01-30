@@ -56,8 +56,8 @@
         <%= f.text_area :caption, class:'col-md-12 control-form' %>
       </div>
       <div class="field row">
-        <%= f.label :genre_id, "ジャンル !NEED_FIX!", class:"control-label" %>
-        <%= f.number_field :genre_id, class:'col-md-12 control-form' %>
+        <%= f.label :genre_id, "ジャンル", class:"control-label" %>
+        <%= f.select :genre_id, @arrayed_active_genres, {}, class:'col-md-12 control-form' %>
       </div>
       <div class="field row">
         <%= f.label :price, "税抜価格", class:"control-label" %>
@@ -65,7 +65,7 @@
       </div>
       <div class="field row">
         <%= f.label :status, "販売ステータス", class:"control-label" %>
-        <%= f.select :status, Item.statuses.keys.to_a, {}, class:'col-md-12 control-form' %>
+        <%= f.select :status, @arrayed_item_statuses, {}, class:'col-md-12 control-form' %>
       </div>
       <div class="actions row">
         <%= f.submit '変更を保存', class:'btn btn-primary col-md-12' %>

@@ -68,9 +68,11 @@
 <div class="row">
   <%# ! NEED FIX POST PATH %>
   <div class="pull-right">
-    <%= form_for(@add_cart_item, url:root_path) do |f| %>
+    <%= form_for(@add_cart_item, url:items_path) do |f| %>
+      <% hidden_field_tag :item_id, @item.id %>
+      <%= f.hidden_field :item_id, :value => date.id %>
       <%= f.select :amount, (1..10).to_a, class:'col-md-12 control-form' %>
-      <%= link_to "カートに入れる", root_path, class:'btn-sm btn-primary' %>
+      <%= f.submit 'カートに入れる', class:'btn btn-primary col-md-12' %>
     <% end %>
   </div>
 </div>
