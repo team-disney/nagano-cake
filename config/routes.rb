@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # ADMIN-PAGE ROUTINGS
   namespace :admin do
     resources :items, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+    resources :genres, only: [:index, :edit, :update, :create]
   end
   
   # EC-PAGE ROUTINGS
