@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # トップページの routing
   root 'homes#index'
 
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
   get "end_user/confirm" => "end_users#confirm"
   get "end_user/changepassword" => "end_users#changepassword"
 
+    # address の routing. soft_delete は未作成。
+    resources :addresses, only: [:index, :edit, :create, :update]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
