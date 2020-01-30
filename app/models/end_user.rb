@@ -3,7 +3,7 @@ class EndUser < ApplicationRecord
   has_many :ordars
   has_many :cart_items
   has_many :addresses
-
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
