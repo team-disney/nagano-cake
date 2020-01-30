@@ -3,7 +3,10 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :edit, :update, :create]
   end
   
+
+  # トップページの routing
   root 'homes#index'
+
   # end＿user, admin＿users の devise の routing
   devise_for :admin_users, controllers: {
     sessions:      'admin_users/sessions',
@@ -16,7 +19,10 @@ Rails.application.routes.draw do
     registrations: 'end_users/registrations'
   }
 
-
+  # end_users の routing
+  resources :end_users, only: [:show, :edit, :update]
+  get "end_user/confirm" => "end_users#confirm"
+  get "end_user/changepassword" => "end_users#changepassword"
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
