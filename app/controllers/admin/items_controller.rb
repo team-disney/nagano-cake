@@ -21,8 +21,8 @@ class Admin::ItemsController < ApplicationController
     @arrayed_active_genres = []
     active_genres.each do |active_genre|
       @arrayed_active_genres.push(
-        [ active_genre.name,
-          active_genre.id ]
+        [active_genre.name,
+         active_genre.id]
       )
     end
 
@@ -40,8 +40,8 @@ class Admin::ItemsController < ApplicationController
     @arrayed_active_genres = []
     active_genres.each do |active_genre|
       @arrayed_active_genres.push(
-        [ active_genre.name,
-          active_genre.id ]
+        [active_genre.name,
+         active_genre.id]
       )
     end
 
@@ -52,9 +52,26 @@ class Admin::ItemsController < ApplicationController
   def create
     @new_item = Item.new(item_params)
     if @new_item.save
-      redirect_to admin_item_path(@new_item), notice: "You have creatad item successfully."
+      redirect_to admin_item_path(@new_item), notice: "Success!"
     else
-      # FOR VALIDATION
+      # ERROR MASSAGE
+      flash[:alert] = "Save Error!"
+
+      # RENDER VARIABLES
+      # ONLY ACTIVE-GENRES
+      active_genres = Genre.where(status: 1)
+      # AND GENRE-NAMES TO ARRAY --- SELECT GENRES
+      @arrayed_active_genres = []
+      active_genres.each do |active_genre|
+        @arrayed_active_genres.push(
+          [active_genre.name,
+           active_genre.id]
+        )
+      end
+
+      # ITEM STATUS TO ARRAY --- SELECT STATUS
+      @arrayed_item_statuses = Item.statuses.keys.to_a
+
       render :new
     end
   end
@@ -63,8 +80,25 @@ class Admin::ItemsController < ApplicationController
     @edit_item = Item.find(params[:id])
     # Update Validations
     if @edit_item.update(item_params)
-      redirect_to admin_item_path(@edit_item), notice: "You have updatad user successfully."
+      redirect_to admin_item_path(@edit_item), notice: "Success!"
     else
+      # ERROR MASSAGE
+      flash[:alert] = "Save Error!"
+      
+      # RENDER VARIABLES
+      # ONLY ACTIVE-GENRES
+      active_genres = Genre.where(status: 1)
+      # AND GENRE-NAMES TO ARRAY --- SELECT GENRES
+      @arrayed_active_genres = []
+      active_genres.each do |active_genre|
+        @arrayed_active_genres.push(
+          [active_genre.name,
+           active_genre.id]
+        )
+      end
+
+      # ITEM STATUS TO ARRAY --- SELECT STATUS
+      @arrayed_item_statuses = Item.statuses.keys.to_a
       render :edit
     end
   end
