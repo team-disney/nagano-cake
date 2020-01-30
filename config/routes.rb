@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
-
-  # トップページの routing
+  # TOP PAGE ROUTING
   root 'homes#index'
 
-  # end＿user, admin＿users の devise の routing
+  # ADMIN-PAGE ROUTINGS
+  namespace :admin do
+    resources :items, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  end
+  
+  # EC-PAGE ROUTINGS
+  resources :items, only: [:index, :show]
+  resources :genres, only: [:show]
+  
+  # DEVISE ROUTINGS
   devise_for :admin_users, controllers: {
     sessions:      'admin_users/sessions',
     passwords:     'admin_users/passwords',
