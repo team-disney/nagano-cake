@@ -2,6 +2,7 @@ class AddressesController < ApplicationController
   def index
     @address_new = Address.new
     @addresses = Address.all
+    #@end_user = EndUser.find(params[:id]) ← end_user の address が必要なため,でもindex では params できない？
   end
 
   def create
