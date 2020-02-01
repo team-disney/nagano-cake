@@ -2,7 +2,9 @@ class AddressesController < ApplicationController
   def index
     @address_new = Address.new
     @addresses = Address.all
-    #@end_user = EndUser.find(params[:id]) ← end_user の address が必要なため,でもindex では params できない？
+    #もし EndUser にある address を持ってくるならこれ使う。
+    #@current_end_user = current_end_user
+
   end
 
   def create
@@ -23,7 +25,10 @@ class AddressesController < ApplicationController
   end
 
   # 論理削除
-  def soft_delete
+  def destroy
+    address = Address.find(params[:id])
+		address.destroy
+		redirect_to addresses_path, notice: "Your address was successfully destroyed."
   end
 
   private

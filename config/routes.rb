@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get "end_user/changepassword" => "end_users#changepassword"
 
     # address の routing. soft_delete は未作成。
-    resources :addresses, only: [:index, :edit, :create, :update]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

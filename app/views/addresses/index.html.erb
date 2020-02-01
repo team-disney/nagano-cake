@@ -32,14 +32,16 @@
                 <td><%= address.address %></td>
                 <td><%= address.name %></td>
                 <td>
-                <%= link_to '編集する', edit_address_path(address), class:"btn btn-primary" %>
-                <%# 論理削除にする %>
-                <%= link_to '削除する', root_path, class:"btn btn-primary" %>
+                <%= link_to '編集する', edit_address_path(address), class:"btn btn-primary btn-sm" %>
+                <%# 論理削除 %>
+                <%= link_to "削除する",address_path(address), class: "btn btn-danger btn-sm", method: :delete, "data-confirm" => "本当に削除しますか？" %>
                 </td>
             </tbody>
         <% end %>
     </table>
 
 
-<%# end_usersの address がまだエントリーしていない %>
-    <%# @end_user.address %> 
+<%# end_users の address エントリーさせるならこれ。保留中%>
+    <%# @current_end_user.address %>
+    <%# @current_end_user.zipcode %> 
+    <%# @current_end_user.last_name %> 
