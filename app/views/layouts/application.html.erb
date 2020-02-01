@@ -32,7 +32,7 @@
                 <span class = "glyphicon glyphicon-user" > <%= current_end_user.first_name %>さん、こんにちは！</span>
               </p>
               <li><%= link_to "トップ", root_path %></li>
-              <li><%= link_to "商品一覧", root_path %></li>
+              <li><%= link_to "商品一覧", items_path %></li>
               <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %></li>
               <li><%= link_to "カート", root_path, :class => "glyphicon glyphicon-shopping-cart" %></li>
             <% else %>
