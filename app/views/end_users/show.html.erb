@@ -2,7 +2,7 @@
 
     <h3><strong>登録情報</strong>
         <%= link_to '編集する', edit_end_user_path(current_end_user.id), class:"btn btn-primary" %>
-        <%= link_to 'パスワードを変更する',   changepassword_end_users_path(current_end_user.id), class:"btn btn-primary" %>
+        <%= link_to 'パスワードを変更する',   edit_end_user_registration_path, class:"btn btn-primary" %>
     </h3>
 
 <table>

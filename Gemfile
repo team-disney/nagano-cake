@@ -73,5 +73,5 @@ gem "refile-mini_magick"
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 
-# Adds: paranoia (論理削除の為の gem)
+# Adds: paranoia (論理削除用の gem)
 gem 'paranoia'

@@ -22,14 +22,10 @@ class EndUsersController < ApplicationController
   def confirm
   end
 
-  def changepassword
-  end
-
   # 論理削除
   def destroy
     end_user = EndUser.find(params[:id])
-		end_user.destroy
-		flash[:success] = "Book was successfully destroyed."
+		end_user.destroy, notice: "Your account was successfully destroyed."
 		redirect_to root_path
   end
 

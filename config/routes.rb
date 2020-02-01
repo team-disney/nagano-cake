@@ -28,12 +28,11 @@ Rails.application.routes.draw do
   resources :end_users, only: [:show, :edit, :update, :destroy] do
     collection do
       get :confirm
-      get :changepassword
     end
   end
 
-    # address の routing. soft_delete は未作成。
-    resources :addresses, only: [:index, :edit, :create, :update]
+  # address の routing. soft_delete は未作成。
+  resources :addresses, only: [:index, :edit, :create, :update]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
