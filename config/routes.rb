@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   }
 
   # end_users の routing
-  resources :end_users, only: [:show, :edit, :update] do
+  resources :end_users, only: [:show, :edit, :update, :destroy] do
     collection do
       get :confirm
       get :changepassword

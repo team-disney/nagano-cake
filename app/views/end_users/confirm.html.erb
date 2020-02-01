@@ -7,7 +7,4 @@
     <%= link_to '退会しない', root_path, class:"btn btn-primary" %>
     <%= link_to '退会する', root_path, class:"btn btn-danger" %>
 
-    <%# rrouting
-        "end_users/confirm" を "end_user/confirm" にした。
-        理由：s をつけるとshow ページに飛んでしまうから。
-    %>
+    <%= link_to "Destroy",end_user_path(current_end_user), class: "btn btn-danger btn-sm", method: :delete, "data-confirm" => "本当に削除しますか？" %>
