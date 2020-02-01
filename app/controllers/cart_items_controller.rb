@@ -1,13 +1,14 @@
 class CartItemsController < ApplicationController
   def index
-    # カートアイテムを作成
-    @cart_item = CartItem.new
-
-    # ユーザーにカートアイテムを持たせる
-    user = current_end_user.id
-    # @user_have_cart_items = user.cart_item
+    # 現在のユーザーのカートアイテムを全て持ってくる
+    @current_user_cart_items = CartItem.where(end_user_id: current_end_user.id)
+    @cart_items = CartItem.all
     
-    @item = Item.where(id: 1) #後ほど修正予定
+    @sum_price = 0
+    @current_user_cart_items.each do |cart_item|
+      @sum_price += cart_item.item.price * cart_item.amount
+    end
+
   end
 
   # helper_method :current_cart
@@ -31,14 +32,21 @@ class CartItemsController < ApplicationController
   end
 
   def update
+    cart_item = CartItem.find(params[:id])
+    if cart_item.update(edit_item_amount_params)
+      redirect_to cart_items_path
+    end
   end
 
-  def destroy #現段階では削除がルーティングエラーになります
-    item = Item.find(params[:id])
-    if  item.end_user_id == current_end_user.id
-        item_id.destroy
-        redirect_to cart_items_path
-    end
+  def destroy_all
+    CartItem.where(end_user_id: current_end_user.id).destroy_all
+    redirect_to cart_items_path
+  end
+
+  def destroy
+    cart_item = CartItem.find(params[:id])
+      cart_item.destroy
+      redirect_to cart_items_path
   end
 
   def input
@@ -52,7 +60,11 @@ class CartItemsController < ApplicationController
 
   private
 
-  def cart_item__params
+  def edit_item_amount_params
     params.require(:cart_item).permit(:amount)
+  end
+
+  def cart_item_params
+    params.require(:cart_item).permit(:end_user_id, :item_id, :amount)
   end
 end
