@@ -25,9 +25,12 @@ Rails.application.routes.draw do
   }
 
   # end_users の routing
-  resources :end_users, only: [:show, :edit, :update]
-  get "end_user/confirm" => "end_users#confirm"
-  get "end_user/changepassword" => "end_users#changepassword"
+  resources :end_users, only: [:show, :edit, :update] do
+    collection do
+      get :confirm
+      get :changepassword
+    end
+  end
 
     # address の routing. soft_delete は未作成。
     resources :addresses, only: [:index, :edit, :create, :update]
