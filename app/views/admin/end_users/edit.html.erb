@@ -7,7 +7,7 @@
                 <%= @end_user.id %>
             </td>
         </tr>
-<%= form_for(@end_user) do |f| %>
+<%= form_for(@end_user, url: admin_end_user_path) do |f| %>
         <tr>
             <td>氏名</td>
             <td>
