@@ -1,5 +1,5 @@
 <h3>会員情報画面</h3>
-
+<%= form_for(@end_user, url: admin_end_user_path) do |f| %>
     <table>
         <tr>
             <td>会員ID</td>
@@ -7,7 +7,6 @@
                 <%= @end_user.id %>
             </td>
         </tr>
-<%= form_for(@end_user, url: admin_end_user_path) do |f| %>
         <tr>
             <td>氏名</td>
             <td>
@@ -49,7 +48,10 @@
         <tr>
             <td>会員ステータス</td>
             <td>
-                編集中 
+                <%= f.radio_button :deleted_at, 0 %>
+                <%= f.label "有効" %>
+                <%= f.radio_button :deleted_at, 1 %>
+                <%= f.label "退会済み" %>
             </td>
         </tr>
     </table>

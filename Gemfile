@@ -73,3 +73,6 @@ gem "refile-mini_magick"
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'pry-rails'
+
+# Adds: paranoia
+gem 'paranoia'
