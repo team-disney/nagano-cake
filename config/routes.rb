@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'orders/index'
+  get 'orders/show'
   # CART ITEM-PAGE ROUTINGS
   resources :cart_items, only: [:index, :input, :display, :thanks, :create, :update, :destroy]
 
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
   # EC-PAGE ROUTINGS
   resources :items, only: [:index, :show, :create]
   resources :genres, only: [:show]
+  resources :orders, only: [:index, :show, :create]
   
   # DEVISE ROUTINGS
   devise_for :admin_users, controllers: {
