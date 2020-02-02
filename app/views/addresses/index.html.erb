@@ -1,0 +1,45 @@
+
+<h3>配送先登録/一覧</h3>
+
+<%= form_for(@address_new) do |f| %>
+    <table>
+        <tr>
+            <td>郵便番号</td>
+            <td><%= f.text_field :zipcode %></td>
+        </tr>
+        <tr>
+            <td>住所</td>
+            <td><%= f.text_field :address, :size=>"45" %></td>
+        </tr>
+        <tr>
+            <td>宛名</td>
+            <td><%= f.text_field :name %></td>
+    </table>
+    <%= f.submit '登録する',class: "btn btn-primary" %>
+<% end %>
+
+
+
+    <table>
+            <thead>
+                <th>郵便番号</th>
+                <th>住所</th>
+                <th>宛名</th>
+            </thead>
+        <% @addresses.each do |address| %>
+            <tbody>
+                <td><%= address.zipcode %></td>
+                <td><%= address.address %></td>
+                <td><%= address.name %></td>
+                <td>
+                <%= link_to '編集する', edit_address_path(address), class:"btn btn-primary" %>
+                <%# 論理削除にする %>
+                <%= link_to '削除する', root_path, class:"btn btn-primary" %>
+                </td>
+            </tbody>
+        <% end %>
+    </table>
+
+
+<%# end_usersの address がまだエントリーしていない %>
+    <%# @end_user.address %> 

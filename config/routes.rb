@@ -1,22 +1,40 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'orders/index'
-    get 'orders/update'
-    get 'orders/show'
-  end
+  # TOP PAGE ROUTING
   root 'homes#index'
-  # end＿user, admin＿users の devise の routing
+
+  # ADMIN-PAGE ROUTINGS
+  namespace :admin do
+    resources :items, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+    resources :genres, only: [:index, :edit, :update, :create]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
+  end
+  
+  # EC-PAGE ROUTINGS
+  resources :items, only: [:index, :show]
+  resources :genres, only: [:show]
+  
+  # DEVISE ROUTINGS
   devise_for :admin_users, controllers: {
     sessions:      'admin_users/sessions',
     passwords:     'admin_users/passwords',
     registrations: 'admin_users/registrations'
   }
-  resources :end_users
-  resources :admin_users
-  resources :admin_orders
   devise_for :end_users, controllers: {
     sessions:      'end_users/sessions',
     passwords:     'end_users/passwords',
     registrations: 'end_users/registrations'
   }
+
+  # end_users の routing
+  resources :end_users, only: [:show, :edit, :update]
+  get "end_user/confirm" => "end_users#confirm"
+  get "end_user/changepassword" => "end_users#changepassword"
+
+    # address の routing. soft_delete は未作成。
+    resources :addresses, only: [:index, :edit, :create, :update]
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
 end

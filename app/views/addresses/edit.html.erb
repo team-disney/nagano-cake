@@ -1,0 +1,26 @@
+
+<h3>配送先編集</h3>
+
+<%= form_for(@address) do |f| %>
+    <table>
+        <tr>
+            <td>郵便番号</td>
+            <td>
+                <%= f.text_field :zipcode %>
+            </td>
+        </tr>
+        <tr>
+            <td>住所</td>
+            <td>
+                <%= f.text_field :address %>
+            </td>
+        </tr>
+        <tr>
+            <td>宛名</td>
+            <td>
+                <%= f.text_field :name %>
+            </td>
+        </tr>
+    </table>
+    <%= f.submit '編集する',class: "btn btn-primary" %>
+<% end %>
