@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :items, only: [:index, :show, :new, :edit, :create, :update, :destroy]
     resources :genres, only: [:index, :edit, :update, :create]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
   end
   
   # EC-PAGE ROUTINGS
