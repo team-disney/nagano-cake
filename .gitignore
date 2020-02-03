@@ -36,3 +36,6 @@
 
 # Windows
 Thumbs.db
+
+# VSCode
+/.vscode

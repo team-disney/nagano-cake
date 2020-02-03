@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get "cart_item/display" => "cart_items#display"
   post "cart_item/display" => "cart_items#display"
   get "cart_item/thanks" => "cart_items#thanks"
-  delete "cart_item/destroy_all" => "cart_items#destroy_all" 
-
+  delete "cart_item/destroy_all" => "cart_items#destroy_all"
+  
   # TOP PAGE ROUTING
   root 'homes#index'
 
@@ -15,11 +15,16 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :items, only: [:index, :show, :new, :edit, :create, :update, :destroy]
     resources :genres, only: [:index, :edit, :update, :create]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
   end
   
   # EC-PAGE ROUTINGS
   resources :items, only: [:index, :show, :create]
   resources :genres, only: [:show]
+  
+  # CART ITEM-PAGE ROUTINGS
+  resources :cart_items, only: [:index, :input, :display, :thanks, :create, :update, :destroy]
   
   # DEVISE ROUTINGS
   devise_for :admin_users, controllers: {
@@ -34,13 +39,19 @@ Rails.application.routes.draw do
   }
 
   # end_users の routing
-  resources :end_users, only: [:show, :edit, :update]
-  get "end_user/confirm" => "end_users#confirm"
-  get "end_user/changepassword" => "end_users#changepassword"
+  resources :end_users, only: [:show, :edit, :update, :destroy] do
+    collection do
+      get :confirm
+    end
+  end
 
-    # address の routing. soft_delete は未作成。
-    resources :addresses, only: [:index, :edit, :create, :update]
+  # address の routing. soft_delete は未作成。
+  resources :addresses, only: [:index, :edit, :create, :update]
 
+    # admin/end_users の routing
+    namespace :admin do
+      resources :end_users, only: [:index, :show, :edit, :update]
+    end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 

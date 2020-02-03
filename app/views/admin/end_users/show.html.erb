@@ -1,0 +1,61 @@
+<h3>会員詳細画面</h3>
+
+
+<table>
+    <tr>
+        <td>顧客ID</td>
+        <td>
+            <%= @end_user.id %>
+        </td>
+        <td>
+            <% if @end_user.deleted_at == nil %>
+            <%= "有効会員" %>
+            <% else %>
+            <%= "退会済会員" %>
+            <% end %>
+        </td>
+    </tr>
+    <tr>
+        <td>氏名</td>
+        <td>
+            <%= @end_user.first_name %>
+            <%= @end_user.last_name %>
+        </td>
+    </tr>
+        <tr>
+        <td>フリガナ</td>
+        <td>
+            <%= @end_user.first_name_kana %>
+            <%= @end_user.last_name_kana %>
+        </td>
+    </tr>
+    <tr>
+        <td>郵便番号</td>
+        <td>
+            <%= @end_user.zipcode %>
+        </td>
+    </tr>
+    <tr>
+        <td>住所</td>
+        <td>
+            <%= @end_user.address %>
+        </td>
+    </tr>
+    <tr>
+        <td>電話番号</td>
+        <td>
+            <%= @end_user.phone_number %>
+        </td>
+    </tr>
+    <tr>
+        <td>メールアドレス</td>
+        <td>
+            <%= @end_user.email %>
+        </td>
+    </tr>
+</table>
+
+<%# end_userの  編集画面へ %>
+<%= link_to '編集する', edit_admin_end_user_path(@end_user), class:"btn btn-primary" %> </h3>
+<%# !!未設定!! end_user の注文履歴一覧へ遷移. %>
+<%= link_to '注文履歴を見る', root_path, class:"btn btn-primary" %> </h3>
