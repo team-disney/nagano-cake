@@ -23,11 +23,12 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @add_cart_item = CartItem.new(add_cart_item_params)
-    @add_cart_item.end_user_id = current_end_user.id
-    if @add_cart_item.save
+    add_cart_item = CartItem.new(add_cart_item_params)
+    add_cart_item.end_user_id = current_end_user.id
+    if add_cart_item.save
       # redirect_to cart_items_path, notice: "商品を追加しました。"
-      redirect_to item_path(@add_cart_item), notice: "商品を追加しました。"
+      redirect_to cart_items_path, notice: "#{add_cart_item.item.name} を #{add_cart_item.amount} 個 カートに追加しました。"
+
     else
       # FOR VALIDATION
       # render :show
