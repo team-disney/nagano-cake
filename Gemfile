@@ -78,3 +78,7 @@ gem "jquery-rails"
 
 # Adds: paranoia
 gem 'paranoia'
+
+# Adds: kaminari for pagenations
+gem "kaminari", "~> 1.1.1"
+

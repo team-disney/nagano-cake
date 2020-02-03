@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   def index
     # ALL-ITEMS
-    @items = Item.all
+    # @items = Item.all
+    @items = Item.page(params[:page]).per(20)
 
     # ONLY FILTERED ITEMS BY GENRE
     @filtered_items = Item.where(genre_id: @genre)
