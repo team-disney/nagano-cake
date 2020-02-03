@@ -12,10 +12,10 @@
     <%# HEADER %>
     <header>
       <div class="container">
-        <div class=" logo navbar-left">
-          <span>ながのCAKE</span>
+        <div class="logo navbar-left">
+          <span>Nagano Cake</span>
         </div>
-        <nav class="nav navbar-nav navbar-right">
+        <nav class="nav navbar navbar-nav navbar-right">
           <% if controller.controller_path == 'admin_users/sessions' && controller.action_name == 'new' %>
           <% else %>
             <% if admin_user_signed_in? %>
@@ -50,7 +50,7 @@
       </div>
     </header>
     <%# YIELD DIV %>
-    <div class="container">
+    <div class="container yield">
       <%# FLASH MESSAGE %>
       <% if flash[:notice] %>
         <div class="row">
@@ -66,13 +66,15 @@
         </div>
       <% end %>
       <%# YIELD %>
-      <%= yield %>
+      <div class="yield">
+        <%= yield %>
+      </div>
     </div>
     <%# FOOTER %>
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-sm-2 col-sm-offset-1", style="list-style:none;">
+          <div class="col-sm-2 col-sm-offset-1">
             <li><%= link_to "会社情報", root_path %></li>
             <br>
             <li><%= link_to "サイトマップ", root_path %></li>
@@ -82,7 +84,7 @@
             <li><%= link_to "アクセス", root_path %></li>
             <br>
           </div>
-          <div class="col-sm-2", style="list-style:none;">
+          <div class="col-sm-2">
             <li><%= link_to "よくあるご質問", root_path %></li>
             <br>
             <li><%= link_to "お問い合わせ", root_path %></li>
