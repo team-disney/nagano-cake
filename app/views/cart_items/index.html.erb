@@ -22,7 +22,7 @@
       </thead>
       <% @current_user_cart_items.each do |cart_item| %>
       <tr>
-        <td><%= attachment_image_tag Item.find(cart_item.id),:image, :fill, 50, 50%><%= cart_item.item.name %></td> 
+        <td><%= attachment_image_tag Item.find(cart_item.item.id),:image, :fill, 50, 50%><%= cart_item.item.name %></td> 
         <td><%= cart_item.item.price %></td>
         <%= form_for cart_item do |f| %>
         <td><%= f.text_field :amount %>
@@ -42,7 +42,7 @@
     <div class="col-sm-offset-9">
       <table class="table table-bordered">
         <tr>
-          <th>合計金額</th><td><%= @sum_price %></td>
+          <th>合計金額</th><td><%= @sub_total %></td>
         </tr>
       </table>
     </div>
