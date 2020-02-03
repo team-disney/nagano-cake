@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   
-  # CART ITEM-PAGE ROUTINGS
-  resources :cart_items, only: [:index, :input, :display, :thanks, :create, :update, :destroy]
-
   # TOP PAGE ROUTING
   root 'homes#index'
 
@@ -17,6 +14,9 @@ Rails.application.routes.draw do
   # EC-PAGE ROUTINGS
   resources :items, only: [:index, :show, :create]
   resources :genres, only: [:show]
+  
+  # CART ITEM-PAGE ROUTINGS
+  resources :cart_items, only: [:index, :input, :display, :thanks, :create, :update, :destroy]
   
   # DEVISE ROUTINGS
   devise_for :admin_users, controllers: {
@@ -38,6 +38,10 @@ Rails.application.routes.draw do
     # address の routing. soft_delete は未作成。
     resources :addresses, only: [:index, :edit, :create, :update]
 
+    # admin/end_users の routing
+    namespace :admin do
+      resources :end_users, only: [:index, :show, :edit, :update]
+    end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
