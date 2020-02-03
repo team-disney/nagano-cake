@@ -1,6 +1,7 @@
 class Admin::OrdersController < ApplicationController
     def index
         @orders = Order.all
+        @order_details = OrderDetail.all
         
         @filtered_orders = Order.where(order_id: @Order)
 

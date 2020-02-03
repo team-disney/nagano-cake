@@ -21,9 +21,10 @@
         <tr>
 		<td><%= link_to order.created_at, admin_order_path(order) %></td>
 		<td><%= order.name %></td>
-		<td><%= order.end_user_id %></td>
+        <% order.order_details.each do |order_detail, i| %>
+		<td><%= order_detail.amount %></td>
+        <% end %>
 		<td><% order.status %></td>
-		
         </tr>
 	<% end %>
     </tbody>
