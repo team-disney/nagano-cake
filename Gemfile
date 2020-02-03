@@ -74,3 +74,6 @@ gem "sassc-rails", ">= 2.1.0"
 
 # Adds: jquery-rails
 gem "jquery-rails"
+
+# Adds: kaminari for pagenations
+gem "kaminari", "~> 1.1.1"

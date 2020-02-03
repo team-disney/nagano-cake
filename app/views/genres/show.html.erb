@@ -41,13 +41,13 @@
     <div class="filtered-genre-titles row">
       <p>
         <span class="filtered-genre-name-text"><%= @genre.name %></span>
-        <span class="filtered-number-of-hits-text">全 <%= @filtered_items.count %> 件</span>
+        <span class="filtered-number-of-hits-text">全 <%= @pagenated_items.count %> 件</span>
       </p>
     </div>
     <%# FILTERED ITEMS %>
     <div class="filtered col-md-12">
       <%# ITEM EACH %>
-      <% @filtered_items.each do |item| %>
+      <% @pagenated_items.each do |item| %>
         <%= link_to item_path(item) do %>
           <div class="item col-md-3">
             <div class="item-image col-md-12">
@@ -60,6 +60,9 @@
           </div>
         </div>
       <% end %>
+    </div>
+    <div class="row">
+      <%= paginate @pagenated_items, class: "pagination" %>
     </div>
   </div>
 </div>
