@@ -19,7 +19,7 @@ class EndUser < ApplicationRecord
   validates :last_name_kana, :first_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
   # zipcode 7桁の数字以外 NG
   validates :zipcode, length: { in:7..7 }, format: { with: /\A[a-z0-9]+\z/}
-  # phone_number 11桁の数字以外 NG
-  validates :phone_number, length: { in:11..11 }, format: { with: /\A[a-z0-9]+\z/}
+  # phone_number 10-11桁の数字以外 NG
+  validates :phone_number, length: { in:10..11 }, format: { with: /\A[a-z0-9]+\z/}
 
 end

@@ -2,14 +2,26 @@ class AddressesController < ApplicationController
   def index
     @address_new = Address.new
     @addresses = Address.all
-    #@end_user = EndUser.find(params[:id]) ← end_user の address が必要なため,でもindex では params できない？
+    # 全表示させたいので each を使う。
+    @addresses.each do |f|
+      f.zipcode.insert(3, '-').split('-')
+    end
   end
 
   def create
-    @address = Address.new(address_params)
-    @address.end_user_id = current_end_user.id
-    @address.save
-    redirect_to addresses_path, notice: "You have created address successfully."
+    @address_new = Address.new(address_params)
+    @address_new.end_user_id = current_end_user.id
+    if@address_new.save
+      redirect_to addresses_path, notice: "You have created address successfully."
+    else
+      # ERROR MASSAGE
+      flash[:alert] = "Save Error!"
+      # RENDER VARIABLES
+      # 全表示
+      @addresses = Address.all
+      render :index
+    end
+
   end
 
   def edit
@@ -18,12 +30,21 @@ class AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
-    @address.update(address_params)
-    redirect_to addresses_path, notice: "You have updatad your address successfully."
+    if@address.update(address_params)
+      redirect_to addresses_path, notice: "You have updatad your address successfully."
+    else
+      # ERROR MASSAGE
+      flash[:alert] = "Save Error!"
+      # RENDER VARIABLES
+      render :edit
+    end
   end
 
   # 論理削除
-  def soft_delete
+  def destroy
+    @address = Address.find(params[:id])
+		@address.destroy
+		redirect_to addresses_path, notice: "Your address was successfully destroyed."
   end
 
   private
