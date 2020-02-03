@@ -69,11 +69,16 @@ gem "refile", require: "refile/rails", github: "manfe/refile"
 gem "refile-mini_magick"
 
 # Adds: bootstrap-sass
-gem "bootstrap-sass", "~> 3.4.1"
-gem "sassc-rails", ">= 2.1.0"
+gem 'bootstrap-sass', '~> 3.4.1'
+gem 'sassc-rails', '>= 2.1.0'
+gem 'pry-rails'
 
 # Adds: jquery-rails
 gem "jquery-rails"
 
+# Adds: paranoia
+gem 'paranoia'
+
 # Adds: kaminari for pagenations
 gem "kaminari", "~> 1.1.1"
+
