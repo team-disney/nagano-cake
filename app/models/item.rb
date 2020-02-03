@@ -6,6 +6,14 @@ class Item < ApplicationRecord
   # ITEM HAS IMAGE ATTACHMENT
   attachment :image
 
+  # VALIDATES
+  validates :name, presence:true, length: { maximum: 30 }
+  validates :caption, presence:true, length: { maximum: 1000 }
+  validates :price, presence:true, numericality: { only_integer: true }
+  validates :genre_id, presence:true, numericality: { only_integer: true }
+  validates :status, presence:true
+
+  
   # ENUM STATUS
   enum status: {
                   "販売停止中": 0,

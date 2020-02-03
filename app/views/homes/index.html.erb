@@ -1,2 +1,35 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<%# PRODUCT IMAGE %>
+<div class="row kv">
+  <div id="theTarget">
+    <div class="kv" id="kv_bg_img_1"></div>
+    <div class="kv" id="kv_bg_img_2"></div>
+    <div class="kv" id="kv_bg_img_3"></div>
+    <div class="kv" id="kv_bg_img_4"></div>
+  </div>
+</div>
+<%# PRODUCTS INDEX %>
+<h2 class="text-center">Products</h2>
+<div class="products row text-center slideanim slide">
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <%= image_tag('kv/test2.jpg', class: '') %>
+      <p><strong>ドーナツ</strong></p>
+      <p>当店の一番人気！</p>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <%= image_tag('kv/test1.jpg', class: '') %>
+      <p><strong>マカロン</strong></p>
+      <p>季節限定！いろいろなフレーバーをお楽しみください。</p>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <%= image_tag('kv/test3.jpg', class: '') %>
+      <p><strong>パイケーキ</strong></p>
+      <p>しっとり&サクサク食感！</p>
+      <p>多くのお客様にリピートいただいております。</p>
+    </div>
+  </div>
+</div>

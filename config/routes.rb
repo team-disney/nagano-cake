@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   # TOP PAGE ROUTING
   root 'homes#index'
 
@@ -7,11 +7,16 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :items, only: [:index, :show, :new, :edit, :create, :update, :destroy]
     resources :genres, only: [:index, :edit, :update, :create]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
   end
   
   # EC-PAGE ROUTINGS
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show, :create]
   resources :genres, only: [:show]
+  
+  # CART ITEM-PAGE ROUTINGS
+  resources :cart_items, only: [:index, :input, :display, :thanks, :create, :update, :destroy]
   
   # DEVISE ROUTINGS
   devise_for :admin_users, controllers: {
