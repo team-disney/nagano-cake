@@ -9,73 +9,93 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
   <body>
+    <%# HEADER %>
     <header>
       <div class="container">
-        <div class=" logo navbar-left">
-          <span>ながのCAKE</span>
+        <div class="logo navbar-left">
+          <span>Nagano Cake</span>
         </div>
-        <nav class="nav navbar-nav navbar-right">
-        <% if controller.controller_path == 'admin_users/sessions' && controller.action_name == 'new' %>
-
-        <% else %>
-          <% if admin_user_signed_in? %>
-              <li><%= link_to "商品一覧", root_path %></li>
-              <li><%= link_to "会員一覧", root_path %></li>
-              <li><%= link_to "注文履歴一覧", root_path %></li>
-              <li><%= link_to "ジャンル管理", root_path %></li>
-              <%= form_tag do %>
-              <%= text_field_tag :search %>
-              <%= submit_tag 'Search', :name => nil %>
-              <% end%>
-
-          <% elsif end_user_signed_in? %>
-            <p class="navbar-text">
-              <span class = "glyphicon glyphicon-user" > <%= current_end_user.first_name %>さん、こんにちは！</span>
-            </p>
-            <li><%= link_to "トップ", root_path %></li>
-            <li><%= link_to "商品一覧", root_path %></li>
-            <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %></li>
-            <li><%= link_to "カート", root_path, :class => "glyphicon glyphicon-shopping-cart" %></li>
-          
+        <nav class="nav navbar navbar-nav navbar-right">
+          <% if controller.controller_path == 'admin_users/sessions' && controller.action_name == 'new' %>
           <% else %>
-            <p class="navbar-text">
-              <span class = "glyphicon glyphicon-user" > ゲストさん、こんにちは！</span>
-            </p>
-            <li><%= link_to "トップ", root_path %></li>
-            <li><%= link_to "商品一覧", root_path %></li>
-            <li><%= link_to "登録", new_end_user_registration_path %></li>
-            <li><%= link_to "ログイン", new_end_user_session_path %></li>
-            <li><%= link_to "カート", root_path, :class => "glyphicon glyphicon-shopping-cart" %></li>
+            <% if admin_user_signed_in? %>
+              <li><%= link_to "商品一覧", admin_items_path %></li>
+              <li><%= link_to "会員一覧(nolinked)", root_path %></li>
+              <li><%= link_to "注文履歴一覧(nolinked)", root_path %></li>
+              <li><%= link_to "ジャンル管理", admin_genres_path %></li>
+              <%= form_tag do %>
+                <%= text_field_tag :search %>
+                <%= submit_tag 'Search', :name => nil %>
+              <% end%>
+            <% elsif end_user_signed_in? %>
+              <p class="navbar-text">
+                <span class = "glyphicon glyphicon-user" > <%= current_end_user.first_name %>さん、こんにちは！</span>
+              </p>
+              <li><%= link_to "トップ", root_path %></li>
+              <li><%= link_to "商品一覧", items_path %></li>
+              <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %></li>
+              <li><%= link_to "カート(nolinked)", root_path, :class => "glyphicon glyphicon-shopping-cart" %></li>
+            <% else %>
+              <p class="navbar-text">
+                <span class = "glyphicon glyphicon-user" > ゲストさん、こんにちは！</span>
+              </p>
+              <li><%= link_to "トップ", root_path %></li>
+              <li><%= link_to "商品一覧", items_path %></li>
+              <li><%= link_to "登録", new_end_user_registration_path %></li>
+              <li><%= link_to "ログイン", new_end_user_session_path %></li>
+              <li><%= link_to "カート(nolinked)", root_path, :class => "glyphicon glyphicon-shopping-cart" %></li>
+            <% end %>
           <% end %>
-        <% end %>
         </nav>
       </div>
     </header>
-
-    <%# フラッシュメッセージ %>
-    <p id = "notice"><%= notice %></p>
-
-    <div class="conteiner">
-    <%= yield %>
-    </div>
-
-    <footer>
-      <div class="conteiner">
+    <%# YIELD DIV %>
+    <div class="container yield">
+      <%# FLASH MESSAGE %>
+      <% if flash[:notice] %>
         <div class="row">
-          <div class="col-sm-2 col-sm-offset-1", style="list-style:none;">
-              <li><%= link_to "会社情報", root_path %></li><br>
-              <li><%= link_to "サイトマップ", root_path %></li><br>
-              <li><%= link_to "プライバシーポリシー", root_path %></li><br>
-              <li><%= link_to "アクセス", root_path %></li><br>
-          </div>
-          <div class="col-sm-2", style="list-style:none;">
-            <li><%= link_to "よくあるご質問", root_path %></li><br>
-            <li><%= link_to "お問い合わせ", root_path %></li><br>
+          <p class="text-success">
+            <%= flash[:notice]%>
+          </p>
+        </div>
+      <% elsif flash[:alert] %>
+        <div class="row">
+          <p class="text-danger">
+            <%= flash[:alert]%>
+          </p>
+        </div>
+      <% end %>
+      <%# YIELD %>
+      <div class="yield">
+        <%= yield %>
+      </div>
+    </div>
+    <%# FOOTER %>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-2 col-sm-offset-1">
+            <li><%= link_to "会社情報", root_path %></li>
+            <br>
+            <li><%= link_to "サイトマップ", root_path %></li>
+            <br>
+            <li><%= link_to "プライバシーポリシー", root_path %></li>
+            <br>
+            <li><%= link_to "アクセス", root_path %></li>
+            <br>
           </div>
           <div class="col-sm-2">
-            <strong><h4>SNSアカウント</h4></strong>
+            <li><%= link_to "よくあるご質問", root_path %></li>
+            <br>
+            <li><%= link_to "お問い合わせ", root_path %></li>
+            <br>
+          </div>
+          <div class="col-sm-2">
+            <strong>
+              <h4>SNSアカウント</h4>
+            </strong>
             <p><i class="fab fa-twitter fa-3x"></i>
-            <i class="fab fa-instagram fa-3x"></i></p>
+              <i class="fab fa-instagram fa-3x"></i></p>
           </div>
         </div>
         <div class="copyright">
@@ -84,4 +104,4 @@
       </div>
     </footer>
   </body>
-<html>
+</html>

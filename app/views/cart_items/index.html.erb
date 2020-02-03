@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-sm-offset-1">
+    <h1>ショッピングカート</h1>
+    <%= link_to 'カートを空にする', cart_items_path, method: :delete, data: {confirm: 'カートを空にしてよろしいですか？'}, class: "btn btn-danger" %>
+  </div>
+</div>
+<br>
+<div class="col-sm-8 col-sm-offset-2">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>商品名</td>
+        <td>単価（税込）</td>
+        <td>数量</td>
+        <td>小計</td>
+        <td></td>
+      </tr>
+    </thead>
+    <% @item.each do |item| %>
+      <td><%= attachment_image_tag item, :image, :fill, 50, 50 %><%= item.name %></td>
+      <td><%= item.price %></td>
+      <td><%=  %></td>
+      <td><%=  %></td>
+      <td><%= link_to '削除', cart_items_path, method: :delete, data: {confirm: '商品を削除してよろしいですか？'}, class: "btn btn-danger" %>
+    <% end %>
+  </table>
+
+  <table class="1">
+  <thead>
+    <td>合計金額</td>
+  </thead>
+  <td><%= %></td>
+  </table>
+</div>

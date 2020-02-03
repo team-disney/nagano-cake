@@ -21,4 +21,5 @@ class EndUser < ApplicationRecord
   validates :zipcode, length: { in:7..7 }, format: { with: /\A[a-z0-9]+\z/}
   # phone_number 11桁の数字以外 NG
   validates :phone_number, length: { in:11..11 }, format: { with: /\A[a-z0-9]+\z/}
+
 end
