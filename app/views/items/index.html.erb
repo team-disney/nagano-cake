@@ -1,0 +1,60 @@
+<%# ITEM INDEX --- ITEM LIST %>
+<%# YOU CAN USE INSTANCE VARIABLES/METHODS DOWNBELOW
+    @items
+    .id
+    .name
+    .genre_id
+    .status
+    .caption
+    .price
+    .image_id
+%>
+<%# NOTICE %>
+<div class="row">
+  <p id="notice"></p>
+</div>
+<%# CONTENT %>
+<div class="row">
+  <%# ITEM FILTER %>
+  <div class="col-md-2">
+    <div class="list-group" style="max-width: 400px;">
+      <%= link_to items_path, class: "list-group-item list-group-item-action active" do %>
+        <span>すべての商品</span>
+      <% end %>
+      <% @active_genres.each do | active_genre | %>
+        <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action" do %>
+          <span><%= active_genre.name %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <%# FILTERED LIST %>
+  <div class="col-md-10">
+    <div class="filtered-titles row">
+      <p>
+        <span class="filtered-title-text">すべての商品</span>
+        <span class="filtered-number-of-hits">全 <%= @items.count %> 件</span>
+      </p>
+    </div>
+    <%# FILTERED ITEMS %>
+    <div class="filtered col-md-12">
+      <%# ITEM EACH %>
+      <% @items.each do |item| %>
+        <div class="item col-md-3">
+          <div class="item-image row">
+            <%= link_to item_path(item) do %>
+              <%= attachment_image_tag item, :image, :fill, 180, 100, format: 'jpeg', class: "item-img" %>
+            <% end %>
+          </div>
+          <div class="item-info row">
+            <p class="item-name"><%= item.name %></p>
+            <p class="item-price">¥ <%= item.price %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <%= paginate @items, class: "pagination" %>
+    </div>
+  </div>
+</div>
