@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   end
 
   # address の routing. soft_delete は未作成。
-  resources :addresses, only: [:index, :edit, :create, :update]
+  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
     # admin/end_users の routing
     namespace :admin do
