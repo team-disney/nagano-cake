@@ -31,12 +31,14 @@ Rails.application.routes.draw do
   }
 
   # end_users の routing
-  resources :end_users, only: [:show, :edit, :update]
-  get "end_user/confirm" => "end_users#confirm"
-  get "end_user/changepassword" => "end_users#changepassword"
+  resources :end_users, only: [:show, :edit, :update, :destroy] do
+    collection do
+      get :confirm
+    end
+  end
 
-    # address の routing. soft_delete は未作成。
-    resources :addresses, only: [:index, :edit, :create, :update]
+  # address の routing. soft_delete は未作成。
+  resources :addresses, only: [:index, :edit, :create, :update]
 
     # admin/end_users の routing
     namespace :admin do

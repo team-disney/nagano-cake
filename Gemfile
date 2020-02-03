@@ -71,14 +71,15 @@ gem "refile-mini_magick"
 # Adds: bootstrap-sass
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
+
+# Adds: to debug
 gem 'pry-rails'
 
 # Adds: jquery-rails
 gem "jquery-rails"
 
-# Adds: paranoia
+# Adds: paranoia for soft dalete
 gem 'paranoia'
 
 # Adds: kaminari for pagenations
 gem "kaminari", "~> 1.1.1"
-
