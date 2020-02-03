@@ -34,7 +34,7 @@
               <li><%= link_to "トップ", root_path %></li>
               <li><%= link_to "商品一覧", items_path %></li>
               <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %></li>
-              <li><%= link_to "カート(nolinked)", root_path, :class => "glyphicon glyphicon-shopping-cart" %></li>
+              <li><%= link_to "カート", cart_items_path, :class => "glyphicon glyphicon-shopping-cart" %></li>
             <% else %>
               <p class="navbar-text">
                 <span class = "glyphicon glyphicon-user" > ゲストさん、こんにちは！</span>

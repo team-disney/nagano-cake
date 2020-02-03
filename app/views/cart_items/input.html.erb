@@ -1,41 +1,42 @@
 <div class="row">
   <h1>購入情報入力</h1>
 </div>
-
-<div class="row">
-  <h3>支払方法</h3>
+<%= form_with url: { controller: "cart_items", action: "create_cart_session" } do |form| %>
+  <div class="row">
+    <h3>支払方法</h3>
     <div class="col-sm-offset-1">
-  <%= form_tag(cart_item_display_path) do |f| %>
-    <%= radio_button_tag :payment_method, "クレジットカード" %>
-    <%= label_tag "クレジットカード" %><br>
-    <%= radio_button_tag :payment_method, "銀行振込" %>
-    <%= label_tag "銀行振込" %>
+      <%= form.radio_button :payment_method, "credit_card" %>
+      <%= label_tag "クレジットカード" %><br>
+      <%= form.radio_button :payment_method, "bank_transfer" %>
+      <%= label_tag "銀行振込" %>
+    </div>
   </div>
-</div>
-
-<div class="row">
+  <div class="row">
     <h3>お届け先</h3>
-      <div class="col-sm-offset-1">
-      <p><%= radio_button_tag :address, "自身の住所" %>
-      <%= label_tag "ご自身の住所" %><br>
-      <%="〒"%><%= current_end_user.zipcode %><%="\n"%><%= current_end_user.address %><br>
-      <%= current_end_user.first_name %><%="\n"%><%= current_end_user.last_name %></p>
-      
-      <p><%= radio_button_tag :address, "登録済住所" %>
-      <%= label_tag "登録済住所から選択" %><br>
-      <%# <%= select_tag :address_id, current_end_user.addresses,:id, :input_view_address %></p> %>
-      
-      <p><%= radio_button_tag :address, "新規住所" %>
-      <%= label_tag "新しいお届け先" %><br>
-        <%= label_tag "郵便番号" %><%= text_field_tag :zipcode, "" , {size:"10"} %><small>ハイフンなし</small><br>
-        <%= label_tag "住所　　" %><%= text_field_tag :address, "" , {size:"60"} %><br>
-        <%= label_tag "宛名　　" %><%= text_field_tag :name, "" , {size:"30"} %></p>
-        <div class="row">
-          <div class="col-sm-8 col-sm-offset-5">
-            <%= submit_tag "確認画面へ進む", class: "btn btn-primary" %>
-          </div>
+    <div class="col-sm-offset-1">
+      <p>
+        <%= form.radio_button :send_method, "main_address" %>
+        <%= label_tag "ご自身の住所" %><br>
+        <%="〒"%><%= current_end_user.zipcode %><%="\n"%><%= current_end_user.address %><br>
+        <%= current_end_user.first_name %><%="\n"%><%= current_end_user.last_name %>
+      </p>
+      <p>
+        <%= form.radio_button :send_method, "sub_address" %>
+        <%= label_tag "ご登録済みの配送先から選択" %><br>
+        <%= form.collection_select(:sub_address_id, current_end_user.addresses, :id, :input_view_address ) %>
+      </p>
+      <p>
+        <%= form.radio_button :send_method, "new_address" %>
+        <%= label_tag "新しいお届け先" %><br>
+        <%= label_tag "郵便番号" %><%= form.text_field :new_zipcode, size: 7 %><small>ハイフンなし</small><br>
+        <%= label_tag "　　住所" %><%= form.text_field :new_address, size: 60 %><br>
+        <%= label_tag "　　宛名" %><%= form.text_field :new_name, size: 30 %>
+      </p>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-5">
+          <%= submit_tag "確認画面へ進む", class: "btn btn-primary" %>
         </div>
-    <% end%>
+      </div>
+    </div>
   </div>
-</div>
-
+<% end%>

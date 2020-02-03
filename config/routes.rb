@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   
   # CART ITEM-PAGE ROUTINGS
   resources :cart_items, only: [:index, :create, :update, :destroy]
+  # TT
+  post "cart_item/create_cart_session" => "cart_items#create_cart_session"
+  # HASSYS
   get "cart_item/input" => "cart_items#input"
   get "cart_item/display" => "cart_items#display"
   post "cart_item/display" => "cart_items#display"
