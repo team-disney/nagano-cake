@@ -1,2 +1,56 @@
-<h1>CartItems#display</h1>
-<p>Find me in app/views/cart_items/display.html.erb</p>
+<div class="row">
+  <h1>注文情報確認</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-1">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>商品名</td>
+          <td>単価（税込）</td>
+          <td>数量</td>
+          <td>小計</td>
+        </tr>
+      </thead>
+      <% @current_user_cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= attachment_image_tag Item.find(cart_item.item.id),:image, :fill, 50, 50%><%= cart_item.item.name %></td> 
+        <td><%= cart_item.item.price %></td>
+        <td><%= cart_item.amount %>
+        <td><%= cart_item.item.price * cart_item.amount %></td>
+      <% end %>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-sm-2 col-sm-offset-1">
+    <table class="table table-bordered">
+        <tr>
+          <td>送料</td>
+          <td><%= @shipping_price %></td>
+          </tr>
+          <tr>
+          <td>商品合計</td>
+          <td><%= @sub_total %></td>
+          </tr>
+          <td>請求合計</td>
+          <td><%= @shipping_price + @sub_total %></td>
+        </tr>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <h3>支払方法</h3><%= @order.payment_method %>
+</div>
+
+<div class="row">
+  <h3>お届け先</h3><%= @address %>
+</div>
+
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-5">
+    <%= link_to '購入を確定する', cart_item_thanks_path, class: "btn btn-primary" %>
+  </div>
+</div>
