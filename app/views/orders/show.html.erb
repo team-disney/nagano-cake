@@ -1,2 +1,71 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="row">
+    <h2>注文履歴詳細</h2>
+</div>
+
+<%# UP %>
+<div class="col-md-8">
+    <h2>注文情報</h2>
+    <table class="table table-bordered table-hover table-striped">
+        <tbody>
+            <tr>
+            <th>注文日</th><th><%= @order.created_at %></th>
+            </tr>
+            <tr>
+            <th>配送先</th>
+            <th><%= @order.zipcode %><p><%= @order.address %><p><%= @order.name %></th>
+            </tr>
+            <tr>
+            <th>支払方法</th><th><%= @order.payment_method %></th>
+            </tr>
+            <tr>
+            <th>ステータス</th><th><%= @order.status %></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<%# DOwn %>
+<div class="row">
+<%# DOWN LEFT %>
+　<div class="col-md-4">
+<h2>請求情報</h2>
+　　<table class="table table-bordered table-hover table-striped">
+    　　<tbody>
+            <tr>
+            <th>商品合計</th><th><%= (@order.sum_price).to_i %></th>
+            </tr>
+            <tr>
+            <th>配送料</th><th><%= (@order.shipping_price) %></th>
+            <tr>
+            <th>ご請求額</th><th><%= (@order.payment_price).to_i %></th>
+            </tr>
+            </tr>
+        </tbody>
+    　</table>
+　</div>
+
+
+<%# DOWN RIGHT %>
+<div class="col-md-12 row">
+　　<h2>注文内容</h2>
+    <table class="table table-bordered table-hover table-striped">
+    <tbody>
+    <tr>
+        <th>商品</th>
+        <th>単価(税込)</th>
+        <th>個数</th>
+        <th>小計</th>
+        </tr>
+        <% @order.order_details.each do |order_detail| %>
+        <tr>
+        <td><%= order_detail.item_name %></td>
+        <td><%= order_detail.price %></td>
+        <td><%= order_detail.amount %></td>
+        <td><%= order_detail.price * order_detail.amount %></td>
+            </tr>
+        <% end %>
+            
+    </tbody>
+    </table>
+</div>
+</div>
+

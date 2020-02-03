@@ -22,16 +22,23 @@
     <% @orders.each do |order| %>
         <tr>
 		<td><%= order.created_at %></td>
-        <td><%= order.zipcode %></td>
-        <td><%= order.address %></td>
-        <td><%= order.name %></td>
-		<td><%= order.end_user_id %></td>
-		<td><% order.status %></td>
-        <th><%= order.submit "表示する", class: "btn btn-primary" %></th>
-		
+        <td><%= order.zipcode %><p><%= order.address %><p><%= order.name %></td>
+        <td>
+            <% order.order_details.each do |order_detail, i| %>
+
+                <%= order_detail.item_name %>
+
+                <% if i != (order.order_details.length - 1) %>
+                    <br/>
+                <% end %>
+
+            <% end %>
+        </td>
+        <td><%= order.payment_price %></td>
+		<td><%= order.status %></td>
+        <th><%= link_to "表示する", order_path(order) %></th>
         </tr>
 	<% end %>
     </tbody>
     </table>
 </div>
-
