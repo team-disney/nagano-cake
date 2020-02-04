@@ -1,4 +1,6 @@
 class CartItemsController < ApplicationController
+  before_action :authenticate_end_user!
+  
   # INDEX PAGE LOAD
   def index
     # CURRENT USER CART ITEMS
