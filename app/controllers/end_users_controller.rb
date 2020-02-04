@@ -4,8 +4,10 @@ class EndUsersController < ApplicationController
   def show
     @end_user = EndUser.find(params[:id])
     # zipcode にハイフンを入れる
-    @end_user.zipcode = 'xxxyyyy'
     @end_user.zipcode.insert(3, '-').split('-')
+    # phone_number にハイフンを入れる。11桁のときじゃないと変になる。2/4 に時間があれば要検討。ten
+    @end_user.phone_number.insert(3, '-').split('-')
+    @end_user.phone_number.insert(8, '-').split('-')
   end
 
   def edit
@@ -40,7 +42,7 @@ class EndUsersController < ApplicationController
 
   private
     def end_user_params
-        params.require(:end_user).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :zipcode, :address, :phone_number, :email)
+      params.require(:end_user).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :zipcode, :address, :phone_number, :email)
     end
 
 end

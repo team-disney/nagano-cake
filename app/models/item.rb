@@ -13,10 +13,16 @@ class Item < ApplicationRecord
   validates :genre_id, presence:true, numericality: { only_integer: true }
   validates :status, presence:true
 
-  
   # ENUM STATUS
   enum status: {
                   "販売停止中": 0,
                   "販売中": 1,
   }
+
+  # PRICE * TAX
+  def tax_price
+    tax = 0.1
+    self.price + (price * tax).to_i
+  end
+
 end

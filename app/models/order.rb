@@ -1,14 +1,20 @@
 class Order < ApplicationRecord
-    belongs_to :end_user
-    has_many :order_details
+  # ASSOCIATIONS  
+  belongs_to :end_user
+  has_many :order_details, dependent: :destroy
 
-    accepts_nested_attributes_for :order_details
+  # SAVE WITH CHILDREN
+  accepts_nested_attributes_for :order_details
 
-    enum status:{"入金待ち":0,"入金確認":1,"製作中":2,"発送準備中":3,"発送中":4}
-    
-    def total_price
-		order.sum_price
-    end
+  # ORDER=STATUS ENUM
+  enum status: {
+                  "入金待ち": 0,
+                  "入金確認": 1,
+                  "製作中": 2,
+                  "発送準備中": 3,
+                  "発送中": 4,
+  }
 
-    Order.all.sum(:payment_price)
+  # VARIDATIONS
+
 end
