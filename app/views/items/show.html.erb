@@ -21,7 +21,6 @@
 <%# ITEM FILTER %>
 <div class="col-md-2">
   <div class="item-filter-list-group" style="max-width: 400px;">
-    <div class="list-group-item list-group-item-action">ジャンル検索</div>
     <%= link_to items_path, class: "list-group-item list-group-item-action" do %>
       <span>すべての商品</span>
     <% end %>
@@ -51,14 +50,15 @@
       <div class="col-md-6">
         <div class="row">
           <label class="control-label" for="item_name">商品名</label>
-          <p><%= @item.name %></p>
+          <p><h4><%= @item.name %></h4></p>
         </div>
         <div class="row">
           <label class="control-label" for="item_caption">商品説明</label>
-          <p><%= @item.caption %></p>
+          <h5><p><%= @item.caption %></p></h5>
         </div>
+        <p></p>
         <div class="row">
-          <span class="item-price">¥ <%= @item.price %> </span><span class="item-price-tax">(税込)</span>
+          <span class="item-price">¥ <%= @item.price %></span><span class="item-price-tax">(税込)</span>
         </div>
       </div>
     </div>

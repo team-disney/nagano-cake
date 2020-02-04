@@ -47,7 +47,7 @@
             <% end %>
           </div>
           <div class="item-info row">
-            <p class="item-name"><%= item.name %></p>
+            <p class="item-name"><%= link_to item.name, item_path(item) %></p>
             <p class="item-price">¥ <%= item.price %></p>
           </div>
         </div>

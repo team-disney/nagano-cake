@@ -29,7 +29,7 @@
               <% end%>
             <% elsif end_user_signed_in? %>
               <p class="navbar-text">
-                <span class = "glyphicon glyphicon-user" > <%= current_end_user.first_name %>さん、こんにちは！</span>
+                <span class = "glyphicon glyphicon-user" > <%= link_to current_end_user.first_name, end_user_path(current_end_user) %>さん、こんにちは！</span>
               </p>
               <li><%= link_to "トップ", root_path %></li>
               <li><%= link_to "商品一覧", items_path %></li>

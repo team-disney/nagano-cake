@@ -1,44 +1,57 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h3>配送先登録/一覧</h3>
+  </div>
+</div>
 
-<h3>配送先登録/一覧</h3>
-
+<br>
 <%= form_for(@address_new) do |f| %>
-    <table>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <table class="table table-bordered">
         <tr>
-            <td>郵便番号</td>
-            <td><%= f.text_field :zipcode %></td>
+          <th>郵便番号</th>
+          <td><%= f.text_field :zipcode, :size=>"10"  %></td>
         </tr>
         <tr>
-            <td>住所</td>
-            <td><%= f.text_field :address, :size=>"45" %></td>
+          <th>住所</th>
+          <td><%= f.text_field :address, :size=>"60" %></td>
         </tr>
         <tr>
-            <td>宛名</td>
-            <td><%= f.text_field :name %></td>
-    </table>
-    <%= f.submit '登録する',class: "btn btn-primary" %>
+          <th>宛名</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+      </table>
+      <%= f.submit '登録する',class: "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>
 
-
-
-    <table>
-            <thead>
-                <th>郵便番号</th>
-                <th>住所</th>
-                <th>宛名</th>
-            </thead>
-        <% @addresses.each do |address| %>
-            <tbody>
-                <td><%= address.zipcode %></td>
-                <td><%= address.address %></td>
-                <td><%= address.name %></td>
-                <td>
-                <%= link_to '編集する', edit_address_path(address), class:"btn btn-primary" %>
-                <%# 論理削除にする %>
-                <%= link_to '削除する', root_path, class:"btn btn-primary" %>
-                </td>
-            </tbody>
-        <% end %>
+<br><br>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <table class="table table-bordered">
+      <thead>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th></th>
+      </thead>
+      <% @addresses.each do |address| %>
+        <tbody>
+          <td><%= address.zipcode %></td>
+          <td><%= address.address %></td>
+          <td><%= address.name %></td>
+          <td>
+          <%= link_to '編集する', edit_address_path(address), class:"btn btn-primary" %>
+          <%# 論理削除にする %>
+          <%= link_to '削除する', root_path, class:"btn btn-primary" %>
+          </td>
+        </tbody>
+      <% end %>
     </table>
+  </div>
+</div>
 
 
 <%# end_usersの address がまだエントリーしていない %>
