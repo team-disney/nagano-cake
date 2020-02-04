@@ -4,8 +4,9 @@ class GenresController < ApplicationController
     @genre = Genre.find(params[:id])
 
     # ONLY FILTERED ITEMS BY GENRE
-    @filtered_items = Item.where(genre_id: @genre)
-    @pagenated_items = @filtered_items.page(params[:page]).per(20)
+  
+    @active_filtered_items = Item.where(genre_id: @genre, status: 1)
+    @pagenated_items = @active_filtered_items.page(params[:page]).per(20)
 
     # ONLY ACTIVE-GENRES
     @active_genres = Genre.where(status: 1)
