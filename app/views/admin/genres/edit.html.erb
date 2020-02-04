@@ -9,14 +9,25 @@
   </div>
 <% end %>
 
-<h1>ジャンル編集画面</h1>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h1>ジャンル編集画面</h1>
+  </div>
+</div>
 
-<%= form_for @genre, url: admin_genre_path do |f| %>
-  <span class="genre_name">ジャンル</span>
-  <%= f.text_field :name %>
-  <%= f.radio_button :status, :有効 %>
-  <%= f.label "有効" %>
-  <%= f.radio_button :status, :無効 %>
-  <%= f.label "無効" %>
-  <%= f.submit "変更を保存する", class: "btn btn-primary" %>
-<% end %>
+<br>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <%= form_for @genre, url: admin_genre_path do |f| %>
+      <span class="genre_name">ジャンル</span>
+      <%= f.text_field :name %>
+      <%= f.radio_button :status, :有効 %>
+      <%= f.label "有効" %>
+      <%= f.radio_button :status, :無効 %>
+      <%= f.label "無効" %>
+      <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>

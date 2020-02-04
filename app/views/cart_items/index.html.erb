@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-offset-1">
+  <div class="col-sm-10 col-sm-offset-1">
     <h1>ショッピングカート</h1>
     <div class="col-sm-offset-9">
       <%= link_to 'カートを空にする', cart_item_destroy_all_path, method: :delete, data: {confirm: 'カートを空にしてよろしいですか？'}, class: "btn btn-danger" %>
@@ -49,7 +49,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-5">
+    <div class="col-sm-2 col-sm-offset-5">
       <%= link_to '情報入力に進む', cart_item_input_path, class: "btn btn-primary" %>
     </div>
   </div>

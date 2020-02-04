@@ -11,11 +11,18 @@
 %>
 <%# CONTENT %>
 <div class="row">
-  <h2>商品新規追加 (管理者モード)</h2>
+  <div class="col-sm-8 col-sm-offset-2">
+    <h1>商品新規追加 (管理者モード)</h1>
+  </div>
 </div>
+
+<br>
 <div class="row">
-  <%= link_to "管理者商品一覧へ戻る", admin_items_path, class:'btn-sm btn-primary' %>
+  <div class="col-sm-8 col-sm-offset-2">
+    <%= link_to "管理者商品一覧へ戻る", admin_items_path, class:'btn-sm btn-primary' %>
+  </div>
 </div>
+
 <%# NEW ITEM VALIDATION VIEW %>
 <div class="row">
   <% if @new_item.errors.any? %>
@@ -29,18 +36,20 @@
     </div>
   <% end %>
 </div>
+
+<br>
 <%# NEW ITEM REGISTER FORM %>
 <div class="row">
   <%= form_for(@new_item, url:admin_items_path) do |f| %>
     <%# FORM - L --- ITEM IMAGE %>
-    <div class="col-md-5">
+    <div class="col-sm-4 col-sm-offset-2">
       <div class="field">
         <label for="item_image">Image</label>
         <%= f.attachment_field :image, placeholder: "Item Image", class: "item-image-form" %>
       </div>
     </div>
     <%# FORM - R --- ITEM INFORMATION %>
-    <div class="col-md-7">
+    <div class="col-sm-4">
       <div class="field row">
         <%= f.label :name, "商品名", class:"control-label" %>
         <%= f.text_field :name, class:'col-md-12 control-form' %>
@@ -61,8 +70,11 @@
         <%= f.label :status, "販売ステータス", class:"control-label" %>
         <%= f.select :status, @arrayed_item_statuses, {}, class:'col-md-12 control-form' %>
       </div>
+      <br>
       <div class="actions row">
-        <%= f.submit '新規登録', class:'btn btn-primary col-md-12' %>
+      <div class="col-sm-4 col-sm-offset-4">
+        <%= f.submit '新規登録', class:'btn btn-primary' %>
+      </div>
       </div>
     </div>
   <% end %>

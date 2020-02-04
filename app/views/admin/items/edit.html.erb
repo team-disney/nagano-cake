@@ -15,11 +15,16 @@
 </div>
 <%# CONTENT %>
 <div class="row">
-  <h2>商品編集 (管理者モード)</h2>
+  <div class="col-sm-8 col-sm-offset-2">
+    <h1>商品編集 (管理者モード)</h1>
+  </div>
 </div>
+<br>
 <div class="row">
-  <%= link_to "この商品の詳細へ戻る", admin_item_path(@edit_item), class:'btn-sm btn-primary' %>
-  <%= link_to "管理者商品一覧へ戻る", admin_items_path, class:'btn-sm btn-primary' %>
+  <div class="col-sm-8 col-sm-offset-2">
+    <%= link_to "この商品の詳細へ戻る", admin_item_path(@edit_item), class:'btn-sm btn-primary' %>
+    <%= link_to "管理者商品一覧へ戻る", admin_items_path, class:'btn-sm btn-primary' %>
+  </div>
 </div>
 <%# EDIT ITEM VALIDATION VIEW %>
 <div class="row">
@@ -34,11 +39,12 @@
     </div>
   <% end %>
 </div>
+<br>
 <%# EDIT ITEM REGISTER FORM %>
 <div class="row">
   <%= form_for(@edit_item, url:admin_item_path) do |f| %>
     <%# FORM - L --- ITEM IMAGE %>
-    <div class="col-md-5">
+    <div class="col-sm-4 col-sm-offset-2">
       <div class="field">
         <%# 写真 %>
         <%= attachment_image_tag @edit_item, :image, :fill, 400, 300, format: 'jpeg', class: "attachment item image" %>
@@ -46,7 +52,7 @@
       </div>
     </div>
     <%# FORM - R --- ITEM INFORMATION %>
-    <div class="col-md-7">
+    <div class="col-sm-3 col-sm-offset-1">
       <div class="field row">
         <%= f.label :name, "商品名", class:"control-label" %>
         <%= f.text_field :name, class:'col-md-12 control-form' %>
@@ -67,8 +73,11 @@
         <%= f.label :status, "販売ステータス", class:"control-label" %>
         <%= f.select :status, @arrayed_item_statuses, {}, class:'col-md-12 control-form' %>
       </div>
+      <br>
       <div class="actions row">
-        <%= f.submit '変更を保存', class:'btn btn-primary col-md-12' %>
+        <div class="text-center">
+          <%= f.submit '変更を保存', class:'btn btn-primary' %>
+        </div>
       </div>
     </div>
   <% end %>

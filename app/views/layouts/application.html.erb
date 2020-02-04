@@ -23,6 +23,7 @@
               <li><%= link_to "会員一覧(nolinked)", root_path %></li>
               <li><%= link_to "注文履歴一覧(nolinked)", root_path %></li>
               <li><%= link_to "ジャンル管理", admin_genres_path %></li>
+              <li><%= link_to "管理者ログアウト", destroy_admin_user_session_path, method: :delete %></li>
               <%= form_tag do %>
                 <%= text_field_tag :search %>
                 <%= submit_tag 'Search', :name => nil %>
@@ -96,6 +97,9 @@
             </strong>
             <p><i class="fab fa-twitter fa-3x"></i>
               <i class="fab fa-instagram fa-3x"></i></p>
+          </div>
+          <div class="col-sm-2 col-sm-offset-3">
+            <%= link_to "管理者ログイン", new_admin_user_session_path %>
           </div>
         </div>
         <div class="copyright">

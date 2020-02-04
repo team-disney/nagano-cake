@@ -15,15 +15,23 @@
 </div>
 <%# CONTENT %>
 <div class="row">
-  <h2>商品詳細 (管理者モード)</h2>
+  <div class="col-sm-8 col-sm-offset-2">
+    <h1>商品詳細 (管理者モード)</h1>
+  </div>
 </div>
+
+<br>
 <div class="row">
-  <%= link_to "管理者商品一覧へ戻る", admin_items_path, class:'btn-sm btn-primary' %>
+  <div class="col-sm-8 col-sm-offset-2">
+    <%= link_to "管理者商品一覧へ戻る", admin_items_path, class:'btn-sm btn-primary' %>
+  </div>
 </div>
+
+<br>
 <%# ITEM DETAILS %>
 <div class="row">
   <%# LEFT --- ITEM IMAGE %>
-  <div class="col-md-5">
+  <div class="col-sm-5 col-sm-offset-2">
     <%# 写真 %>
     <%= attachment_image_tag @item, :image, :fill, 400, 300, format: 'jpeg', class: "attachment item image" %>
   </div>
@@ -31,28 +39,35 @@
   <div class="col-md-5">
     <div class="row">
       <label class="control-label" for="item_name">商品名</label>
-      <p><%= @item.name %></p>
+      <h4><p><%= @item.name %></p></h4>
     </div>
+    <br>
     <div class="row">
       <label class="control-label" for="item_caption">商品説明</label>
-      <p><%= @item.caption %></p>
+      <h4><p><%= @item.caption %></p></h4>
     </div>
+    <br>
     <div class="row">
       <label class="control-label" for="item_genre_id">ジャンル</label>
-      <p><%= @item.genre.name %></p>
+      <h4><p><%= @item.genre.name %></p></h4>
     </div>
+    <br>
     <div class="row">
       <label class="control-label" for="item_price">税抜価格(税抜価格)</label>
-      <p><%= @item.price %></p>
+      <h4><p><%= @item.price %></p></h4>
     </div>
+    <br>
     <div class="row">
       <label class="control-label" for="item_status">販売ステータス</label>
-      <p><%= @item.status %></p>
+      <h4><p><%= @item.status %></p></h4>
     </div>
   </div>
 </div>
+
 <%# EDIT BUTTON %>
 <div class="row">
-  <%= link_to "編集する", edit_admin_item_path(@item), class:'btn-sm btn-success' %>
-  <%= link_to "販売ページを見る", item_path(@item), class:'btn-sm btn-primary' %>
+  <div class="col-sm-offset-8">
+    <%= link_to "編集する", edit_admin_item_path(@item), class:'btn btn-success' %>
+    <%= link_to "販売ページを見る", item_path(@item), class:'btn btn-primary' %>
+  </div>
 </div>
