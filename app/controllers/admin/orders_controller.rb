@@ -8,8 +8,12 @@ class Admin::OrdersController < ApplicationController
 
   # 本日の注文のみ全表示
   def index_today
-    @orders = Order.all
     @orders = Order.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight)
+  end
+
+  def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   def update
@@ -29,10 +33,6 @@ class Admin::OrdersController < ApplicationController
   
   end
 
-  def show
-      @order = Order.find(params[:id])
-      @order_details = @order.order_details
-  end
 
   private
   def order_params

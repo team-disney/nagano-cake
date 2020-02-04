@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
   def index
     @current_user_orders = current_end_user.orders
-    # @current_user_orders = Order.all
   end
 
   def show
-    @orders = Order.find(params[:id])
+    @order = Order.find(params[:id])
+    # CURRENT USER CHECK
+    if !(current_end_user == @order.end_user)
+      redirect_to root_path
+    end
   end
 
   # REGISTER DECIDED-ORDER FROM SESSIONS

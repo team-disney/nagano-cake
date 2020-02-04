@@ -25,22 +25,23 @@
             <p><%= order.created_at %></p>
           </td>
           <td>
-            <p><%= order.zipcode %></p>
+            <p>〒 <%= order.zipcode[0..2] %>-<%= order.zipcode[3..6] %></p>
             <p><%= order.address %></p>
-            <p><%= order.name %></p>
+            <p><%= order.name %> 様</p>
           </td>
           <td>
             <p>
-              <% order.order_details.each do |order_detail, i| %>
+              <% order.order_details.each do | order_detail, i | %>
                 <%= order_detail.item_name %>
-                <% if i != (order.order_details.length - 1) %>
+                <%= order_detail.amount %> 個
+                <% if i != (order.order_details.size - 1) %>
                   <br/>
                 <% end %>
               <% end %>
             </p>
           </td>
           <td>
-            <p><%= order.payment_price %></p>
+            <p>¥ <%= order.payment_price %></p>
           </td>
           <td>
             <p><%= order.status %></p>

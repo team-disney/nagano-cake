@@ -21,8 +21,9 @@ class CartItemsController < ApplicationController
   # CREATE CART SESSION
   def create_cart_session
 
+
     # REJECT NILL
-    unless cart_params[:payment_method]
+    if cart_params[:payment_method] == nil
       flash[:alert] = "お支払い方法を選択してください"
       render :input
     end
