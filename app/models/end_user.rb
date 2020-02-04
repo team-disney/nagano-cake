@@ -1,6 +1,6 @@
 class EndUser < ApplicationRecord
   # ASSOCIATIONS
-  has_many :ordars
+  has_many :orders
   has_many :cart_items
   has_many :addresses
   

@@ -32,11 +32,11 @@
       </tr>
       <tr>
         <td>商品合計</td>
-        <td><%= @cart_items_pre_sum_price %></td>
+        <td><%= @cart_items_sum_price %></td>
       </tr>
       <tr>
         <td>請求合計</td>
-        <td><%= @shipping_price + @cart_items_pre_sum_price %></td>
+        <td><%= @shipping_price + @cart_items_sum_price %></td>
       </tr>
     </table>
   </div>
@@ -51,6 +51,9 @@
 </div>
 <div class="row">
   <div class="col-sm-8 col-sm-offset-5">
-    <%= link_to '購入を確定する', cart_item_thanks_path, class: "btn btn-primary" %>
+    <%# BUTTON OF DICIDE ODER!  %>
+    <%= form_with url: { controller: "orders", action: "create" } do |form| %>
+      <%= form.submit "購入を確定する", class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
