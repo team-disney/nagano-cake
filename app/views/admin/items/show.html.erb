@@ -42,8 +42,8 @@
       <p><%= @item.genre.name %></p>
     </div>
     <div class="row">
-      <label class="control-label" for="item_price">税抜価格(税抜価格)</label>
-      <p><%= @item.price %></p>
+      <label class="control-label" for="item_price">税込価格(税抜価格)</label>
+      <p><%= @item.tax_price %>(<%= @item.price %>)</p>
     </div>
     <div class="row">
       <label class="control-label" for="item_status">販売ステータス</label>

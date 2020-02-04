@@ -86,6 +86,7 @@ header .container {
   font-family: 'Parisienne', cursive;
   font-size: 30px;
   line-height: 50px;
+  font-weight: 600;
   color: rgb(113, 95, 83);
   // shadow
   -moz-text-shadow: 3px 2px 8px rgba(100, 60, 30, 0.55);
@@ -164,26 +165,33 @@ footer div {
 }
 
 // 通常のボタン色
-.btn-primary, .btn-primary.disabled, .btn-primary:disabled {
+.btn-primary,
+.btn-primary.disabled,
+.btn-primary:disabled {
   background: #c7a77f;
   border-color: #c7a77f;
 }
+
 // フォーカス時の枠線色
-.btn-primary:focus,.btn-primary:not(:disabled):not(.disabled):active:focus, 
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
-.show > .btn-primary.dropdown-toggle:focus {
+.show>.btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgb(238, 229, 210);
   background-color: rgb(113, 95, 83);
 }
+
 // ホバー時のボタン色
 .btn-primary:hover {
   color: #fff;
   background-color: rgb(113, 95, 83);
   border-color: rgb(113, 95, 83);
 }
+
 // アクティブ時のボタン色
-.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
-.show > .btn-primary.dropdown-toggle {
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show>.btn-primary.dropdown-toggle {
   color: #fff;
   background-color: rgb(113, 95, 83);
   border-color: rgb(113, 95, 83);

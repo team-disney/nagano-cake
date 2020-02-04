@@ -1,18 +1,4 @@
 <%# ITEM INDEX --- ITEM LIST %>
-<%# YOU CAN USE INSTANCE VARIABLES/METHODS DOWNBELOW
-    @items
-    .id
-    .name
-    .genre_id
-    .status
-    .caption
-    .price
-    .image_id
-%>
-<%# NOTICE %>
-<div class="row">
-  <p id="notice"></p>
-</div>
 <%# CONTENT %>
 <div class="row">
   <%# ITEM FILTER %>
@@ -48,7 +34,7 @@
           </div>
           <div class="item-info row">
             <p class="item-name"><%= link_to item.name, item_path(item) %></p>
-            <p class="item-price">¥ <%= item.price %></p>
+            <p class="item-price">¥ <%= item.tax_price %></p>
           </div>
         </div>
       <% end %>
