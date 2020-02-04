@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
     decided_order.end_user_id = current_end_user.id.to_i
     # PUT NAME-ZIPCODE-ADDRESS
     if cart_session["selected_send_method"] == "main_address"
-      decided_order.name = "#{current_end_user.first_name} #{current_end_user.last_name}".to_s
+      decided_order.name = "#{current_end_user.last_name} #{current_end_user.first_name}".to_s
       decided_order.zipcode = current_end_user.zipcode.to_i
       decided_order.address = current_end_user.address.to_s
     elsif cart_session["selected_send_method"] == "sub_address"

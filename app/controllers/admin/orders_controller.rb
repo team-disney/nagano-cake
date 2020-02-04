@@ -10,7 +10,7 @@ class Admin::OrdersController < ApplicationController
 
   # 本日の注文のみ全表示
   def index_today
-    @orders = Order.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight)
+    @orders = Order.where(created_at: (Time.now.midnight)..(Time.now.midnight + 1.day))
   end
 
   def show
