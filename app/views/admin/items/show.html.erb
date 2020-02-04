@@ -16,7 +16,7 @@
 <%# CONTENT %>
 <div class="row">
   <div class="col-sm-8 col-sm-offset-2">
-    <h1>商品詳細 (管理者モード)</h1>
+    <h1>商品詳細画面 (管理者モード)</h1>
   </div>
 </div>
 
@@ -54,7 +54,7 @@
     <br>
     <div class="row">
       <label class="control-label" for="item_price">税込価格(税抜価格)</label>
-      <h4><p><%= @item.tax_price %>(<%= @item.price %>)</h4></p>
+      <h4><p><%= @item.tax_price %>(<%= @item.price %>)<small> 円</small></h4></p>
     </div>
     <br>
     <div class="row">

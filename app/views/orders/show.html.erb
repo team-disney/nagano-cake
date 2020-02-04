@@ -1,44 +1,44 @@
 <div class="row">
-<div class="col-sm-10 col-sm-offset-1">
-  <h1>注文履歴詳細</h1>
-</div>
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1>注文履歴詳細</h1>
+  </div>
 </div>
 <%# UP %>
 <div class="row">
-<div class="col-sm-5 col-sm-offset-1">
-  <h3>注文情報</h3>
-  <table class="table table-bordered table-hover table-striped">
-    <tbody>
-      <tr>
-        <th>注文日</th>
-        <td>
-          <p><%= @order.created_at.strftime("%Y-%m-%d %H:%M") %></p>
-        </td>
-      </tr>
-      <tr>
-        <th>配送先</th>
-        <td>
-          <p>〒 <%= @order.zipcode[0..2] %>-<%= @order.zipcode[3..6] %></p>
-          <p><%= @order.address %></p>
-          <p><%= @order.name %> 様</p>
-        </td>
-      </tr>
-      <tr>
-        <th>支払方法</th>
-        <td>
-          <p><%= @order.payment_method %></p>
-        </td>
-      </tr>
-      <tr>
-        <th>ステータス</th>
-        <td>
-          <p><%= @order.status %></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<%# DOwn %>
+  <div class="col-sm-6 col-sm-offset-1">
+    <h3>注文情報</h3>
+    <table class="table table-bordered table-hover table-striped">
+      <tbody>
+        <tr>
+          <th>注文日</th>
+          <td>
+            <p><%= @order.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+          </td>
+        </tr>
+        <tr>
+          <th>配送先</th>
+          <td>
+            <p>〒 <%= @order.zipcode[0..2] %>-<%= @order.zipcode[3..6] %></p>
+            <p><%= @order.address %></p>
+            <p><%= @order.name %> 様</p>
+          </td>
+        </tr>
+        <tr>
+          <th>支払方法</th>
+          <td>
+            <p><%= @order.payment_method %></p>
+          </td>
+        </tr>
+        <tr>
+          <th>ステータス</th>
+          <td>
+            <p><%= @order.status %></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <%# DOwn %>
   <%# DOWN LEFT %>
   <div class="col-sm-4">
     <h3>請求情報</h3>
@@ -59,7 +59,7 @@
       </tbody>
     </table>
   </div>
-  </div>
+</div>
   <%# DOWN RIGHT %>
   <div class="row">
   <div class="col-sm-10 col-sm-offset-1">

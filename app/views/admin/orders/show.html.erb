@@ -1,40 +1,50 @@
 <div class="row">
-  <h1>注文詳細 (管理者モード)</h1>
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1>注文詳細画面 (管理者モード)</h1>
+  </div>
 </div>
+<br>
 <%# UP %>
-<div class="col-md-6 row">
-  <%= form_for(@order, url:admin_order_path) do | order | %>
-    <table class="table table-bordered table-hover table-striped">
-      <tbody>
-        <tr>
-          <th>購入者</th>
-          <td><%= @order.name %></td>
-        </tr>
-        <tr>
-          <th>郵便番号</th>
-          <td>〒 <%= @order.zipcode[0..2] %>-<%= @order.zipcode[3..6] %></td>
-        </tr>
-        <tr>
-          <th>配送先</th>
-          <td><%= @order.address%></td>
-        </tr>
-        <tr>
-          <th>支払方法</th>
-          <td><%= @order.payment_method %></td>
-        </tr>
-        <tr>
-          <th>注文ステータス</th>
-          <td><%= order.select :status, Order.statuses.keys.to_a, {}, class:'col-md-12 control-form' %></td>
-          <td><%= order.submit "更新", class: "float btn btn-primary" %></td>
-        </tr>
-      </tbody>
-    <% end %>
-  </table>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-1">
+    <%= form_for(@order, url:admin_order_path) do | order | %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th width="150">購入者</th>
+            <td><%= @order.name %></td>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <td>〒 <%= @order.zipcode[0..2] %>-<%= @order.zipcode[3..6] %></td>
+          </tr>
+          <tr>
+            <th>配送先</th>
+            <td><%= @order.address%></td>
+          </tr>
+          <%# last_name と first_name の表示が逆になってしまう %>
+          <%# <tr>
+            <th>宛名</th>
+            <%# <td><%= @order.name%></td>
+          <%# </tr> %> 
+          <tr>
+            <th>支払方法</th>
+            <td><%= @order.payment_method %></td>
+          </tr>
+          <tr>
+            <th>注文ステータス</th>
+            <td><%= order.select :status, Order.statuses.keys.to_a, {}, class:'col-md-12 control-form' %></td>
+            <td width="80"><%= order.submit "更新", class: "float btn btn-primary" %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
 </div>
 <%# DOWN %>
 <div class="row">
   <%# DOWN LEFT %>
-  <div class="col-md-8">
+  <div class="col-sm-7 col-sm-offset-1">
     <table class="table table-bordered table-hover table-striped">
       <tbody>
         <tr>
@@ -61,11 +71,11 @@
     </table>
   </div>
   <%# DOWN RIGHT %>
-  <div class="col-md-4">
+  <div class="col-sm-3">
     <table class="table table-bordered table-hover table-striped">
       <tbody>
         <tr>
-          <th>商品合計</th>
+          <th width="120">商品合計</th>
           <td>¥ <%= (@order.sum_price).to_i %></td>
         </tr>
         <tr>
