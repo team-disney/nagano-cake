@@ -3,7 +3,7 @@ class AddressesController < ApplicationController
 
   def index
     @address_new = Address.new
-    @addresses = Address.all
+    @addresses = current_end_user.addresses
     # 全表示させたいので each を使う。
     @addresses.each do |f|
       f.zipcode.insert(3, '-').split('-')
