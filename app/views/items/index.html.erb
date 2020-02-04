@@ -19,13 +19,13 @@
     <div class="filtered-titles row">
       <p>
         <span class="filtered-title-text">すべての商品</span>
-        <span class="filtered-number-of-hits">全 <%= @items.count %> 件</span>
+        <span class="filtered-number-of-hits">全 <%= @activated_items.count %> 件</span>
       </p>
     </div>
     <%# FILTERED ITEMS %>
     <div class="filtered col-md-12">
       <%# ITEM EACH %>
-      <% @items.each do |item| %>
+      <% @pagenated_items.each do |item| %>
         <div class="item col-md-3">
           <div class="item-image row">
             <%= link_to item_path(item) do %>
@@ -40,7 +40,7 @@
       <% end %>
     </div>
     <div class="row">
-      <%= paginate @items, class: "pagination" %>
+      <%= paginate @pagenated_items, class: "pagination" %>
     </div>
   </div>
 </div>
