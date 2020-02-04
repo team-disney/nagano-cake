@@ -77,7 +77,7 @@ class OrdersController < ApplicationController
 
     # PUT TO PRICES
     decided_order.sum_price = cart_items_sum_price.to_i
-    decided_order.shipping_price = cart_session["selected_send_method"].to_i
+    decided_order.shipping_price = cart_session["shipping_price"].to_i
     decided_order.payment_price = decided_order.sum_price + decided_order.shipping_price
 
     # PUT PAYMENT-METHOD

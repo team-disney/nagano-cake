@@ -4,7 +4,7 @@
 </div>
 <%# CONTENT %>
 <div class="row">
-  <h2>注文一覧画面</h2>
+  <h1>注文一覧 (管理者モード)</h1>
 </div>
 <div class="row">
   <table class="table table-bordered table-hover table-striped">
@@ -19,7 +19,7 @@
     <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td><%= link_to order.created_at, admin_order_path(order) %></td>
+          <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M;%S"), admin_order_path(order) %></td>
           <td><%= order.name %></td>
           <% sum_amount = 0 %>
           <% order.order_details.each do | order_detail | %>

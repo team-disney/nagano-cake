@@ -1,35 +1,35 @@
 <%# ヘッダーが入る %>
 <div class="row">
-  <h1>注文詳細</h1>
+  <h1>注文詳細 (管理者モード)</h1>
 </div>
 <%# UP %>
 <div class="col-md-6 row">
-  <table class="table table-bordered table-hover table-striped">
-    <tbody>
-      <tr>
-        <th>購入者</th>
-        <td><%= @order.name %></td>
-      </tr>
-      <tr>
-        <th>郵便番号</th>
-        <td>〒 <%= @order.zipcode[0..2] %>-<%= @order.zipcode[3..6] %></td>
-      </tr>
-      <tr>
-        <th>配送先</th>
-        <td><%= @order.address%></td>
-      </tr>
-      <tr>
-        <th>支払方法</th>
-        <td><%= @order.payment_method %></td>
-      </tr>
-      <tr>
-        <th>注文ステータス</th>
-        <%= form_for(@order, url:admin_order_path) do | order | %>
+  <%= form_for(@order, url:admin_order_path) do | order | %>
+    <table class="table table-bordered table-hover table-striped">
+      <tbody>
+        <tr>
+          <th>購入者</th>
+          <td><%= @order.name %></td>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td>〒 <%= @order.zipcode[0..2] %>-<%= @order.zipcode[3..6] %></td>
+        </tr>
+        <tr>
+          <th>配送先</th>
+          <td><%= @order.address%></td>
+        </tr>
+        <tr>
+          <th>支払方法</th>
+          <td><%= @order.payment_method %></td>
+        </tr>
+        <tr>
+          <th>注文ステータス</th>
           <td><%= order.select :status, Order.statuses.keys.to_a, {}, class:'col-md-12 control-form' %></td>
           <td><%= order.submit "更新", class: "float btn btn-primary" %></td>
-        <% end %>
-      </tr>
-    </tbody>
+        </tr>
+      </tbody>
+    <% end %>
   </table>
 </div>
 <%# DOWN %>

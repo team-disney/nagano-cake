@@ -9,7 +9,7 @@
       <tr>
         <th>注文日</th>
         <td>
-          <p><%= @order.created_at %></p>
+          <p><%= @order.created_at.strftime("%Y-%m-%d %H:%M") %></p>
         </td>
       </tr>
       <tr>
