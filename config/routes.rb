@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  # admin/homes の routing
+    get 'admin/homes' => "admin/homes#index"
+
   get 'orders/index'
   get 'orders/show'
   # CART ITEM-PAGE ROUTINGS
@@ -20,7 +23,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :items, only: [:index, :show, :new, :edit, :create, :update, :destroy]
     resources :genres, only: [:index, :edit, :update, :create]
-    resources :orders, only: [:index, :show, :update]
+    resources :orders, only: [:index, :show, :update] do
+      collection do
+        get :index_today
+      end
+    end
     resources :order_details, only: [:update]
   end
   
