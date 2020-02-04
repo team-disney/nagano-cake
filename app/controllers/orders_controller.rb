@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
   def index
     @current_user_orders = current_end_user.orders
-    # @current_user_orders = Order.all
   end
 
   def show
-    @orders = Order.find(params[:id])
+    @order = Order.find(params[:id])
+    # CURRENT USER CHECK
+    if !(current_end_user == @order.end_user)
+      redirect_to root_path
+    end
   end
 
   # REGISTER DECIDED-ORDER FROM SESSIONS
@@ -74,7 +77,7 @@ class OrdersController < ApplicationController
 
     # PUT TO PRICES
     decided_order.sum_price = cart_items_sum_price.to_i
-    decided_order.shipping_price = cart_session["selected_send_method"].to_i
+    decided_order.shipping_price = cart_session["shipping_price"].to_i
     decided_order.payment_price = decided_order.sum_price + decided_order.shipping_price
 
     # PUT PAYMENT-METHOD

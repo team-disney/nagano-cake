@@ -45,7 +45,7 @@
           <td>
           <%= link_to '編集する', edit_address_path(address), class:"btn btn-primary" %>
           <%# 論理削除にする %>
-          <%= link_to '削除する', root_path, class:"btn btn-primary" %>
+          <%= link_to '削除する', address_path(address), class:"btn btn-primary", method: :delete, "data-confirm" => "本当に削除しますか？" %>
           </td>
         </tbody>
       <% end %>

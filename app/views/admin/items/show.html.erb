@@ -53,8 +53,8 @@
     </div>
     <br>
     <div class="row">
-      <label class="control-label" for="item_price">税抜価格(税抜価格)</label>
-      <h4><p><%= @item.price %></p></h4>
+      <label class="control-label" for="item_price">税込価格(税抜価格)</label>
+      <h4><p><%= @item.tax_price %>(<%= @item.price %>)</h4></p>
     </div>
     <br>
     <div class="row">

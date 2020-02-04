@@ -2,7 +2,7 @@
   <div class="col-sm-10 col-sm-offset-1">
     <h1>ショッピングカート</h1>
     <div class="col-sm-offset-9">
-      <%= link_to 'カートを空にする', cart_item_destroy_all_path, method: :delete, data: {confirm: 'カートを空にしてよろしいですか？'}, class: "btn btn-danger" %>
+      <%= link_to 'カートを空にする', cart_item_destroy_all_path, method: :delete, data: {confirm: 'カートを空にしてよろしいですか？'}, class: "btn btn-danger #{@is_cart_empty_desabled}" %>
     </div>
   </div>
 </div>
@@ -22,13 +22,13 @@
       <% @current_user_cart_items.each do |cart_item| %>
         <tr>
           <td><%= attachment_image_tag Item.find(cart_item.item.id),:image, :fill, 50, 50%><%= cart_item.item.name %></td>
-          <td><%= cart_item.item.tax_price %></td>
+          <td>¥ <%= cart_item.item.tax_price %></td>
           <%= form_for cart_item do |f| %>
             <td><%= f.text_field :amount %>
               <%= f.submit "変更", class: "btn btn-primary"%>
             </td>
           <% end %>
-          <td><%= cart_item.item.tax_price * cart_item.amount %></td>
+          <td>¥ <%= cart_item.item.tax_price * cart_item.amount %></td>
           <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: {confirm: '商品を削除してよろしいですか？'}, class: "btn btn-danger" %>
           <% end %>
         </tr>
@@ -42,7 +42,7 @@
         <table class="table table-bordered">
           <tr>
             <th>合計金額</th>
-            <td><%= @cart_items_sum_price %></td>
+            <td>¥ <%= @cart_items_sum_price %></td>
           </tr>
         </table>
       </div>
@@ -50,6 +50,6 @@
   </div>
   <div class="row">
     <div class="col-sm-2 col-sm-offset-5">
-      <%= link_to '情報入力に進む', cart_item_input_path, class: "btn btn-primary" %>
+      <%= link_to '情報入力に進む', cart_item_input_path, class: "btn btn-primary #{@is_cart_empty_desabled}" %>
     </div>
   </div>

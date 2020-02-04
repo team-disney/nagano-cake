@@ -1,85 +1,82 @@
-<%# ヘッダーが入る %>
 <div class="row">
-   <h1>注文詳細画面</h1>
+  <h1>注文詳細 (管理者モード)</h1>
 </div>
-
 <%# UP %>
-<%= form_for(@order, url:admin_order_path) do |order| %>
-
-<div class="col-md-12 row">
-   <table>
+<div class="col-md-6 row">
+  <%= form_for(@order, url:admin_order_path) do | order | %>
+    <table class="table table-bordered table-hover table-striped">
       <tbody>
-            <tr>
-               <th><%= order.label :name, "購入者", class:"control-label" %></th>
-            </tr>
-            <tr>
-               <th><%= order.label :zipcode, "郵便番号", class:"control-label" %></th>
-            <tr>
-               <th><%= order.label :address, "配送先", class:"control-label" %></th>
-            </tr>
-            <tr>
-               <th><%= order.label :payment_method, "支払方法", class:"control-label" %></th>
-            </tr>
-            <tr>
-               <th>注文ステータス</th>
-               <th><%= order.select :status, Order.statuses.keys.to_a, {}, class:'col-md-12 control-form' %></th>
-               <th><%= order.submit "更新", class: "btn btn-primary" %></th>
-            </tr>
+        <tr>
+          <th>購入者</th>
+          <td><%= @order.name %></td>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td>〒 <%= @order.zipcode[0..2] %>-<%= @order.zipcode[3..6] %></td>
+        </tr>
+        <tr>
+          <th>配送先</th>
+          <td><%= @order.address%></td>
+        </tr>
+        <tr>
+          <th>支払方法</th>
+          <td><%= @order.payment_method %></td>
+        </tr>
+        <tr>
+          <th>注文ステータス</th>
+          <td><%= order.select :status, Order.statuses.keys.to_a, {}, class:'col-md-12 control-form' %></td>
+          <td><%= order.submit "更新", class: "float btn btn-primary" %></td>
+        </tr>
       </tbody>
-   </table>
+    <% end %>
+  </table>
 </div>
-<% end %>
-
-<%# DOwn %>
+<%# DOWN %>
 <div class="row">
-<%# DOWN LEFT %>
-   <div class="col-md-8">
-      <table class="table table-bordered table-hover table-striped">
-         <tbody>
-            <tr>
-               <th>商品名</th>
-               <th>単価(税込)</th>
-               <th>数量</th>
-               <th>小計</th>
-               <th>製作ステータス</th>
-               <th></th>
-            </tr>
-            <% @order.order_details.each do |order_detail| %>
-                  <tr>
-                     <td><%= order_detail.item_name %></td>
-                     <td><%= order_detail.price %></td>
-                     <td><%= order_detail.amount %></td>
-                     <td><%= order_detail.price * order_detail.amount %></td>
-                     <%= form_for(order_detail, url:admin_order_detail_path) do |f| %>
-                        <td><%= f.select :production_status, OrderDetail.production_statuses.keys.to_a, {}, class:'col-md-12 control-form' %></td>
-                        <td><%= f.submit "更新", class: "btn btn-primary" %></td>
-                     <% end %>
-                  </tr>
+  <%# DOWN LEFT %>
+  <div class="col-md-8">
+    <table class="table table-bordered table-hover table-striped">
+      <tbody>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>製作ステータス</th>
+          <th></th>
+        </tr>
+        <% @order.order_details.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item_name %></td>
+            <td>¥ <%= order_detail.price %></td>
+            <td><%= order_detail.amount %> 個</td>
+            <td>¥ <%= order_detail.price * order_detail.amount %></td>
+            <%= form_for(order_detail, url:admin_order_detail_path(order_detail), method: :patch) do |f| %>
+              <td><%= f.select :production_status, OrderDetail.production_statuses.keys.to_a, {}, class:'col-md-12 control-form' %></td>
+              <td><%= f.submit "更新", class: "btn btn-primary" %></td>
             <% end %>
-         </tbody>
-      </table>
-   </div>
-
-
-   <%# DOWN RIGHT %>
-   <div class="col-md-4">
-      <table>
-         <tbody>
-               <tr>
-               <th>商品合計<%= (@order.sum_price).to_i %>円</th>
-               </tr>
-               <tr>
-               <th>送料<%= (@order.shipping_price) %>円</th>
-               <tr>
-               <th>請求合計金額<%= (@order.payment_price).to_i %>円</th>
-               </tr>
-               </tr>
-         </tbody>
-      </table>
-   </div>
-
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%# DOWN RIGHT %>
+  <div class="col-md-4">
+    <table class="table table-bordered table-hover table-striped">
+      <tbody>
+        <tr>
+          <th>商品合計</th>
+          <td>¥ <%= (@order.sum_price).to_i %></td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td>¥ <%= (@order.shipping_price) %></td>
+        </tr>
+        <tr>
+          <th>請求合計金額</th>
+          <td>¥ <%= (@order.payment_price).to_i %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-
-
-      

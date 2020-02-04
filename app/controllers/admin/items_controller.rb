@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin_user!
+  
   def index
     # ALL-ITEMS
     @items = Item.all
@@ -52,7 +54,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @new_item = Item.new(item_params)
     if @new_item.save
-      redirect_to admin_item_path(@new_item), notice: "Success!"
+      redirect_to admin_items_path, notice: "Success!"
     else
       # ERROR MASSAGE
       flash[:alert] = "Save Error!"

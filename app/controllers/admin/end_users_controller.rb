@@ -1,4 +1,5 @@
 class Admin::EndUsersController < ApplicationController
+  before_action :authenticate_admin_user!
 
   # with_deleted は論理削除したデータの含めての呼び出し
   def index

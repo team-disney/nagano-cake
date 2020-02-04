@@ -1,32 +1,30 @@
-<%# HEADER %>
-<div class="row">
-    <p id="notice"></p>
-	</div>
 <%# CONTENT %>
-	<div class="row">
-    <h1>注文一覧画面</h1>
-	</div>
-	<div class="row">
-	<table class="table table-bordered table-hover table-striped">
-        <thead>
-        <tr>
+<div class="row">
+  <h1>注文一覧 (管理者モード)</h1>
+</div>
+<div class="row">
+  <table class="table table-bordered table-hover table-striped">
+    <thead>
+      <tr>
         <th>購入日時</th>
-		<th>購入者</th>
-		<th>注文個数</th>
+        <th>購入者</th>
+        <th>注文個数</th>
         <th>注文ステータス</th>
-        </tr>
+      </tr>
     </thead>
     <tbody>
-    <% @orders.each do |order| %>
+      <% @orders.each do |order| %>
         <tr>
-		<td><%= link_to order.created_at, admin_order_path(order) %></td>
-		<td><%= order.name %></td>
-        <% order.order_details.each do |order_detail, i| %>
-		<td><%= order_detail.amount %></td>
-        <% end %>
-		<td><% order.status %></td>
+          <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M;%S"), admin_order_path(order) %></td>
+          <td><%= order.name %></td>
+          <% sum_amount = 0 %>
+          <% order.order_details.each do | order_detail | %>
+            <% sum_amount += order_detail.amount %>
+          <% end %>
+          <td><%= sum_amount %> 個</td>
+          <td><%= order.status %></td>
         </tr>
-	<% end %>
+      <% end %>
     </tbody>
-    </table>
+  </table>
 </div>

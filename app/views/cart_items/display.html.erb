@@ -19,9 +19,9 @@
         <% @current_user_cart_items.each do |cart_item| %>
           <tr>
             <td><%= attachment_image_tag Item.find(cart_item.item.id),:image, :fill, 50, 50%><%= cart_item.item.name %></td>
-            <td><%= cart_item.item.price %></td>
-            <td><%= cart_item.amount %></td>
-            <td><%= cart_item.item.tax_price * cart_item.amount %></td>
+            <td>¥ <%= cart_item.item.price %></td>
+            <td><%= cart_item.amount %> 個</td>
+            <td>¥ <%= cart_item.item.tax_price * cart_item.amount %></td>
           <% end %>
         </tr>
       </tbody>
@@ -31,15 +31,15 @@
     <table class="table table-bordered">
       <tr>
         <td>送料</td>
-        <td><%= @shipping_price %></td>
+        <td>¥ <%= @shipping_price %></td>
       </tr>
       <tr>
         <td>商品合計</td>
-        <td><%= @cart_items_sum_price %></td>
+        <td>¥ <%= @cart_items_sum_price %></td>
       </tr>
       <tr>
         <td>請求合計</td>
-        <td><%= @shipping_price + @cart_items_sum_price %></td>
+        <td>¥ <%= @shipping_price + @cart_items_sum_price %></td>
       </tr>
     </table>
   </div>

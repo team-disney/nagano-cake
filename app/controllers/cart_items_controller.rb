@@ -1,4 +1,6 @@
 class CartItemsController < ApplicationController
+  before_action :authenticate_end_user!
+  
   # INDEX PAGE LOAD
   def index
     # CURRENT USER CART ITEMS
@@ -9,6 +11,11 @@ class CartItemsController < ApplicationController
     @cart_items_sum_price = 0
     @current_user_cart_items.each do |cart_item|
       @cart_items_sum_price += cart_item.item.tax_price * cart_item.amount
+    end
+
+    # IS CART EMPTY ?
+    if @current_user_cart_items.size == 0
+      @is_cart_empty_desabled = "disabled"
     end
   end
 
@@ -22,26 +29,26 @@ class CartItemsController < ApplicationController
   def create_cart_session
 
     # REJECT NILL
-    unless cart_params[:payment_method]
+    if cart_params[:payment_method] == nil
       flash[:alert] = "お支払い方法を選択してください"
       render :input
     end
 
-    unless cart_params[:send_method]
-      flash[:alert] = "配送先を選択してください"
+    if cart_params[:send_method] == nil
+      flash[:alert] = "配送先を選択してくださgい"
       render :input
     end
 
     if cart_params[:send_method] == "new_address"
-      unless cart_params[:new_zipcode]
+      if cart_params[:new_zipcode] == nil
         flash[:alert] = "新しい配送先の郵便番号を入力してください"
         render :input
       end
-      unless cart_params[:new_address]
+      if cart_params[:new_address] == nil
         flash[:alert] = "新しい配送先の住所を入力してください"
         render :input
       end
-      unless cart_params[:new_name]
+      if cart_params[:new_name] == nil
         flash[:alert] = "新しい配送先の名前を入力してください"
         render :input
       end
@@ -81,10 +88,9 @@ class CartItemsController < ApplicationController
     redirect_to cart_item_display_path
   end
 
-  # DISPLAY PAGE LOAD
+  # DISPLAY
   def display
     @current_user_cart_items = current_end_user.cart_items
-    @shipping_price = 800
 
     # CART-ITEMS PRE-SUM-PRICE
     @cart_items_sum_price = 0
@@ -94,7 +100,7 @@ class CartItemsController < ApplicationController
 
     # FROM SESSION
     cart_session = session[:cart_session]
-    # DISPLAY-PAYMENT-VARIABLE
+    # DISPLAY PAYMENT-VARIABLE
     if cart_session["selected_payment_method"] == "credit_card"
       @decided_payment_method = "クレジットカード"
     elsif cart_session["selected_payment_method"] == "bank_transfer"
@@ -102,7 +108,7 @@ class CartItemsController < ApplicationController
     else
       @decided_payment_method = "PAYMENT METHOD ERROR!"
     end
-    # DISPLAY-SEND-ADDRESS-VARIABLE
+    # DISPLAY SEND-ADDRESS-VARIABLE
     if cart_session["selected_send_method"] == "main_address"
       @decided_send_address = current_end_user.address
     elsif cart_session["selected_send_method"] == "sub_address"
@@ -115,6 +121,9 @@ class CartItemsController < ApplicationController
     else
       @decided_send_address = "ADDRESS ERROR!!"
     end
+
+    # DISPLAY SHIPPING-PRICE
+    @shipping_price = cart_session["shipping_price"]
   end
 
   def thanks
