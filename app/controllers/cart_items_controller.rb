@@ -111,6 +111,7 @@ class CartItemsController < ApplicationController
     # DISPLAY SEND-ADDRESS-VARIABLE
     if cart_session["selected_send_method"] == "main_address"
       @decided_send_address = current_end_user.address
+      @decided_send_address =  "〒 #{current_end_user.zipcode[0..2]}-#{current_end_user.zipcode[3..6]} #{current_end_user.address} #{current_end_user.last_name} #{current_end_user.first_name}"
     elsif cart_session["selected_send_method"] == "sub_address"
       @decided_send_address = current_end_user.addresses.find(cart_session["selected_sub_address_id"].to_i).input_view_address
     elsif cart_session["selected_send_method"] == "new_address"

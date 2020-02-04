@@ -1,50 +1,51 @@
 <%# ITEM SHOW --- ITEM DETAILS %>
 <%# CONTENT %>
 <%# ITEM FILTER %>
-<div class="col-md-2">
-  <div class="item-filter-list-group" style="max-width: 400px;">
-    <%= link_to items_path, class: "list-group-item list-group-item-action" do %>
-      <span>すべての商品</span>
-    <% end %>
-    <% @active_genres.each do | active_genre | %>
-      <% if active_genre.id == @item.genre.id %>
-        <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action active" do %>
-          <span><%= active_genre.name %></span>
-        <% end %>
-      <% else %>
-        <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action" do %>
-          <span><%= active_genre.name %></span>
+<div class="row">
+  <div class="col-sm-2">
+    <div class="item-filter-list-group" style="max-width: 400px;">
+      <%= link_to items_path, class: "list-group-item list-group-item-action" do %>
+        <span>すべての商品</span>
+      <% end %>
+      <% @active_genres.each do | active_genre | %>
+        <% if active_genre.id == @item.genre.id %>
+          <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action active" do %>
+            <span><%= active_genre.name %></span>
+          <% end %>
+        <% else %>
+          <%= link_to genre_path(active_genre), class: "list-group-item list-group-item-action" do %>
+            <span><%= active_genre.name %></span>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
-<div class="col-md-10">
   <%# ITEM DETAILS %>
   <div class="row">
     <%# LEFT --- ITEM IMAGE %>
-    <div class="col-md-6">
+    <div class="col-sm-5">
       <%# 写真 %>
       <%= attachment_image_tag @item, :image, :fill, 400, 280, format: 'jpeg', class: "attachment item image" %>
     </div>
     <%# RIGHT --- ITEM INFORMATION %>
     <%= form_for(@item) do |f| %>
-      <div class="col-md-6">
+      <div class="col-sm-4">
         <div class="row">
           <label class="control-label" for="item_name">商品名</label>
           <p>
             <h4><%= @item.name %></h4>
           </p>
         </div>
+        <br>
         <div class="row">
           <label class="control-label" for="item_caption">商品説明</label>
-          <h5>
+          <h4>
             <p><%= @item.caption %></p>
-          </h5>
+          </h4>
         </div>
-        <p></p>
+        <br>
         <div class="row">
-          <span class="item-price">¥ <%= @item.tax_price %></span><span class="item-price-tax">(税込)</span>
+          <h4><span class="item-price">¥ <%= @item.tax_price %></span><span class="item-price-tax">(税込)</span></h4>
         </div>
       </div>
     </div>
@@ -52,13 +53,17 @@
 </div>
 <%# AMOUNT SELECT AND CART BUTTON %>
 <div class="row">
-  <%# ! NEED FIX POST PATH %>
-  <div class="pull-right">
-    <%= form_for(@add_cart_item, url:items_path) do |f| %>
-      <% hidden_field_tag :item_id, @item.id %>
-      <%= f.hidden_field :item_id, :value => @item.id %>
-      <%= f.select :amount, (1..10).to_a, class:'col-md-12 control-form' %>
-      <%= f.submit 'カートに入れる', class:'btn btn-primary col-md-12' %>
-    <% end %>
+  <div class="col-sm-2 col-sm-offset-7">
+    <%# ! NEED FIX POST PATH %>
+    <div class="pull-right">
+      <%= form_for(@add_cart_item, url:items_path) do |f| %>
+        <% hidden_field_tag :item_id, @item.id %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.select :amount, (1..10).to_a, class:'col-md-12 control-form' %>
+        <%= f.submit 'カートに入れる', class:'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<br><br><br><br><br>

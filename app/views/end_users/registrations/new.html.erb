@@ -70,7 +70,7 @@
         <%# ここを カラム名の encrypted_password に変更したため invalid hash のエラーが出た。デフォルトの password_confirmation に変更したら解決。 %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", :size=>"42" %>
       </div>
-
+      <br>
       <div class="actions">
         <%= f.submit "新規登録", class: "btn btn-primary" %>
       </div>
