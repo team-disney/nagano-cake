@@ -1,8 +1,11 @@
 <div class="row">
-  <h1>注文情報確認</h1>
+  <div class="col-sm-8 col-sm-offset-2">
+    <h1>注文情報確認</h1>
+  </div>
 </div>
+<br>
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-1">
+  <div class="col-sm-5 col-sm-offset-2">
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -42,13 +45,19 @@
   </div>
 </div>
 <div class="row">
-  <h3>支払方法</h3>
-  <%= @decided_payment_method %>
+  <div class="col-sm-8 col-sm-offset-2">
+    <h3>支払方法</h3>
+    <%= @decided_payment_method %>
+  </div>
 </div>
+<br>
 <div class="row">
-  <h3>お届け先</h3>
-  <%= @decided_send_address %>
+  <div class="col-sm-8 col-sm-offset-2">
+    <h3>お届け先</h3>
+    <%= @decided_send_address %>
+  </div>
 </div>
+<br>
 <div class="row">
   <div class="col-sm-8 col-sm-offset-5">
     <%# BUTTON OF DICIDE ODER!  %>

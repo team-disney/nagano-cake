@@ -1,37 +1,45 @@
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h1>会員一覧画面</h1>
+  </div>
+</div>
 
-<h1>会員一覧画面</h1>
-
-<table>
-    <thead>
+<br>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <table class="table">
+      <thead>
         <tr>
-        <th>会員ID</th>
-        <th>氏名</th>
-        <th>メールアドレス</th>
-        <th>ステータス</th>
-        <th></th>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+          <th></th>
         </tr>
-    </thead>
-    <% @end_users.each do |end_user| %>
+      </thead>
+      <% @end_users.each do |end_user| %>
         <tr>
-            <td><%= end_user.id %></td>
-            <td>    <%# 姓名繋げてボタン押せるようにしたい %>
-				<%= link_to admin_end_user_path(end_user.id) do %>
-				<%= end_user.last_name %>
-				<%= end_user.first_name %>
-				<% end %>
-            </td>
-            <td><%= end_user.email %></td>
-            <%# もし deleted_at が nil なら　"有効"　そうでなければ　"退会済" %>
-            <td>
-            <% if end_user.deleted_at == nil %>
-            <%= "有効" %>
-            <% else %>
-            <%= "退会済" %>
-            <% end %>
-            </td> 
-        </tr>
-    <% end %>
-</table>
+          <td><%= end_user.id %></td>
+          <td>    <%# 姓名繋げてボタン押せるようにしたい %>
+          <%= link_to admin_end_user_path(end_user.id) do %>
+          <%= end_user.last_name %>
+          <%= end_user.first_name %>
+          </td>
+      <% end %>
+      <td><%= end_user.email %></td>
+      <%# もし deleted_at が nil なら　"有効"　そうでなければ　"退会済" %>
+      <td>
+      <% if end_user.deleted_at == nil %>
+      <%= "有効" %>
+      <% else %>
+      <%= "退会済" %>
+      <% end %>
+      </td> 
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 
 
 
