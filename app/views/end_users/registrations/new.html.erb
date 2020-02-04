@@ -1,95 +1,81 @@
 <div class="row">
-    <div class="col-xs-4"></div>
-    <div class="col-xs-4">
-      <h2>Sign up</h2>
+  <div class="col-sm-4 col-sm-offset-4">
+    <h3>新規登録</h3>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-        <table>
-          <tr>
-            <td>
-              <%# 姓 %>
-              <div class="field">
-              <%= f.label :氏名 %><br />
-              <%= f.text_field :last_name, autofocus: true, autocomplete: "first_name" %>
-              </div>
-            </td>
-            <br><br>
-            <td>
-              <%# 名 %>
-              <div class="field">
-              <%# ：の後ろに空白を入れないとエラーになる %>
-              <%= f.label :　 %><br />
-              <%= f.text_field :first_name, autofocus: true, autocomplete: "last_name" %>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%# 姓カナ %>
-              <div class="field">
-              <%# ：の後ろに空白を入れないとエラーになる %>
-              <%= f.label :カナ %><br />
-              <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
-              </div>
-            </td>
-            <br><br>
-            <td>
-              <%# 姓カナ %>
-              <div class="field">
-              <%= f.label :　 %><br />
-              <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-              </div>
-            </td>
-          </tr>
-        </table>
+      <table>
+        <tr>
+          <td>
+            <%# 姓 %>
+            <div class="field">
+            <%= f.label :氏名 %><br />
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "first_name" %>
+            </div>
+          </td>
+          <td>
+            <%# 名 %>
+            <div class="field">
+            <%# ：の後ろに空白を入れないとエラーになる %>
+            <%= f.label :　 %><br />
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "last_name" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%# 姓カナ %>
+            <div class="field">
+            <%# ：の後ろに空白を入れないとエラーになる %>
+            <%= f.label :カナ %><br />
+            <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+            </div>
+          </td>
+          <td>
+            <%# 名カナ %>
+            <div class="field">
+            <%= f.label :　 %><br />
+            <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+            </div>
+          </td>
+        </tr>
+      </table>
 
-        <div class="field">
-          <%= f.label :郵便番号 %><br />
-          <%= f.text_field :zipcode, autofocus: true, autocomplete: "zipcode" %>
-          <span class="small">※ハイフン不要</span>
-        </div>
-        <div class="field">
-          <%= f.label :住所 %><br />
-          <%= f.text_field :address, autofocus: true, autocomplete: "address", :size=>"42" %>
-        </div>
-        <div class="field">
-          <%= f.label :電話番号 %><br />
-          <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", :size=>"42" %>
-        </div>
-        <div>
-          <span class="small">※ハイフン不要</span>
-        </div>
+      <div class="field">
+        <%= f.label :郵便番号 %><span class="small">　※ハイフン不要</span><br />
+        <%= f.text_field :zipcode, autofocus: true, autocomplete: "zipcode" %>
+      </div>
+      <div class="field">
+        <%= f.label :住所 %><br />
+        <%= f.text_field :address, autofocus: true, autocomplete: "address", :size=>"42" %>
+      </div>
+      <div class="field">
+        <%= f.label :電話番号 %><span class="small">　※ハイフン不要</span><br />
+        <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", :size=>"42" %>
+      </div>
 
+      <div class="field">
+        <%= f.label :メールアドレス %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",:size=>"42" %>
+      </div>
 
-        <div class="field">
-          <%= f.label :メールアドレス %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email",:size=>"42" %>
-        </div>
+      <div class="field">
+        <%= f.label :パスワード %><span class="small">　※６文字以上の半角英数字</span>
+        <%= f.password_field :password, autocomplete: "new-password", :size=>"42" %>
+      </div>
 
-        <div class="field">
-          <%= f.label :パスワード %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password", :size=>"42" %>
-        </div>
-        <div>
-          <span class="small">※６文字以上の半角英数字</span>
-        </div>
+      <div class="field">
+        <%= f.label :パスワード【再入力】 %><br />
+        <%# ここを カラム名の encrypted_password に変更したため invalid hash のエラーが出た。デフォルトの password_confirmation に変更したら解決。 %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", :size=>"42" %>
+      </div>
 
-        <div class="field">
-          <%= f.label :パスワード【再入力】 %><br />
-          <%# ここを カラム名の encrypted_password に変更したため invalid hash のエラーが出た。デフォルトの password_confirmation に変更したら解決。 %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", :size=>"42" %>
-        </div>
+      <div class="actions">
+        <%= f.submit "新規登録", class: "btn btn-primary" %>
+      </div>
+    <% end %>
 
-        <div class="actions">
-          <%= f.submit "新規登録", class: "btn btn-primary" %>
-        </div>
-      <% end %>
-
-      <%= render "end_users/shared/links" %>
-    </div>
+    <%= render "end_users/shared/links" %>
+  </div>
 </div>

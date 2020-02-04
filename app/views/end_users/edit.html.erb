@@ -1,61 +1,50 @@
-<h3>登録情報編集  <%= link_to '退会する', confirm_end_users_path, class:"btn btn-danger" %> </h3>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h3>登録情報編集　<%= link_to '退会する', confirm_end_users_path, class:"btn btn-danger" %></h3>
+  </div>
+</div>
 
 <% if @end_user.errors.any? %>
 	<div class="alert alert-warning">
-        <ul>
-            <% @end_user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
+    <ul>
+      <% @end_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
 	</div>
 <% end %>
 
 <%= form_for(@end_user) do |f| %>
-    <div class="row">
-        <div class="col-xs-5">
-            <table class="table table-bordered">
-                <tr>
-                    <td>氏名</td>
-                    <td>
-                        <%= f.text_field :last_name %>
-                        <%= f.text_field :first_name %>
-                    </td>
-                </tr>
-                <tr>
-                    <td>カナ</td>
-                    <td>
-                        <%= f.text_field :last_name_kana %>
-                        <%= f.text_field :first_name_kana %>
-                    </td>
-                </tr>
-                <tr>
-                    <td>郵便番号</td>
-                    <td>
-                        <%= f.text_field :zipcode %>
-                    </td>
-                </tr>
-                <tr>
-                    <td>住所</td>
-                    <td>
-                        <%= f.text_field :address %>
-                    </td>
-                </tr>
-                <tr>
-                    <td>電話番号</td>
-                    <td>
-                        <%= f.text_field :phone_number %>
-                    </td>
-                </tr>
-                <tr>
-                    <td>メールアドレス</td>
-                    <td>
-                        <%= f.text_field :email %>
-                    </td>
-                </tr>
-            </table>
-            <br>
-            <%# 保存したらマイページに戻る %>
-            <%= f.submit '編集内容を保存する',class: "btn btn-primary" %>
-        </div>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <table class="table table-bordered">
+        <tr>
+          <td>氏名</td>
+          <td><%= f.text_field :last_name %><%= f.text_field :first_name %></td>
+        </tr>
+        <tr>
+          <td>カナ</td>
+          <td><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= f.text_field :zipcode %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= f.text_field :phone_number %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.text_field :email %></td>
+        </tr>
+      </table>
+      <%# 保存したらマイページに戻る %>
+      <%= f.submit '編集内容を保存する',class: "btn btn-primary" %>
     </div>
+  </div>
 <% end %>

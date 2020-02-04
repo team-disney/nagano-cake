@@ -1,21 +1,19 @@
-
 <div class="row">
-    <div class="col-xs-4"></div>
-    <div class="col-xs-4">
-        <h5 class="text-center"><strong>本当に退会しますか？</strong></h5>
-        <h5 class="text-center">
-        退会すると、会員登録情報や
-        <br>
-        これまでの購入履歴が閲覧できなくなります。
-        <br>
-        退会する場合は、「退会する」をクリックしてください。
-        </h5>
-        <br>
-        <h5 class="text-center">
-        <%= link_to '退会しない', root_path, class:"btn btn-primary" %>
-        <%= link_to "退会する",end_user_path(current_end_user), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
-        </h5>
-    </div>
-    <div class="col-xs-4"></div>
+  <div class="col-sm-6 col-sm-offset-3">
+    <h3 class="text-center"><strong>本当に退会しますか？</strong></h3>
+    <br>
+    <h4 class="text-center">
+    退会すると、会員登録情報や
+    <br>
+    これまでの購入履歴が閲覧できなくなります。
+    <br>
+    退会する場合は、「退会する」をクリックしてください。
+    </h4>
+    <br>
+    <p class="text-center">
+      <%= link_to '退会しない', root_path, class:"btn btn-primary" %>
+      <%= link_to "退会する",end_user_path(current_end_user), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    </p>
+  </div>
 </div>
 

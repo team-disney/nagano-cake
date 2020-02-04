@@ -1,41 +1,27 @@
-
-
 <div class="row">
-    <div class="col-xs-4"></div>
-    <div class="col-xs-4">
-        <h3>配送先編集</h3>
-            <% if @address.errors.any? %>
-                <div class="alert alert-warning">
-                    <ul>
-                        <% @address.errors.full_messages.each do |message| %>
-                            <li><%= message %></li>
-                        <% end %>
-                    </ul>
-                </div>
-            <% end %>
-
-            <%= form_for(@address) do |f| %>
-                <table class="table table-bordered">
-                    <tr>
-                        <td>郵便番号</td>
-                        <td>
-                            <%= f.text_field :zipcode %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>住所</td>
-                        <td>
-                            <%= f.text_field :address, :size=>"32" %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>宛名</td>
-                        <td>
-                            <%= f.text_field :name %>
-                        </td>
-                    </tr>
-                </table>
-                <%= f.submit '編集する',class: "btn btn-primary" %>
-            <% end %>
-    </div>
+  <div class="col-sm-8 col-sm-offset-2">
+    <h3>配送先編集</h3>
+  </div>
 </div>
+<br>
+<%= form_for(@address) do |f| %>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <table class="table table-bordered">
+        <tr>
+          <td>郵便番号</td>
+          <td><%= f.text_field :zipcode, :size=>"10" %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= f.text_field :address, :size=>"60" %></td>
+        </tr>
+        <tr>
+          <td>宛名</td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+      </table>
+      <%= f.submit '編集する',class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

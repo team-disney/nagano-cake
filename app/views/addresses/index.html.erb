@@ -1,53 +1,54 @@
-<h3>配送先登録/一覧</h3>
-
-<% if @address_new.errors.any? %>
-	<div class="alert alert-warning">
-        <ul>
-            <% @address_new.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-	</div>
-<% end %>
-
 <div class="row">
-    <div class="col-xs-8">
-        <%= form_for(@address_new) do |f| %>
-            <table class="table table-bordered">
-                <tr>
-                    <td>郵便番号</td>
-                    <td><%= f.text_field :zipcode %></td>
-                </tr>
-                <tr>
-                    <td>住所</td>
-                    <td><%= f.text_field :address, :size=>"50" %></td>
-                </tr>
-                <tr>
-                    <td>宛名</td>
-                    <td><%= f.text_field :name %></td>
-            </table>
-            <%= f.submit '登録する',class: "btn btn-primary" %>
-        <% end %>
-            <table class="table table-bordered">
-                    <thead>
-                        <th>郵便番号</th>
-                        <th>住所</th>
-                        <th>宛名</th>
-                        <th></th>
-                    </thead>
-                <% @addresses.each do |address| %>
-                    <tbody>
-                        <td><%= address.zipcode %></td>
-                        <td><%= address.address %></td>
-                        <td><%= address.name %></td>
-                        <td>
-                        <%= link_to '編集する', edit_address_path(address), class:"btn btn-primary" %>
-                        <%# 論理削除 %>
-                        <%= link_to '削除する', address_path(address), class:"btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
-                        </td>
-                    </tbody>
-                <% end %>
-            </table>
-    </div>
+  <div class="col-sm-8 col-sm-offset-2">
+    <h3>配送先登録/一覧</h3>
+  </div>
 </div>
 
+<br>
+<%= form_for(@address_new) do |f| %>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <table class="table table-bordered">
+        <tr>
+          <th>郵便番号</th>
+          <td><%= f.text_field :zipcode, :size=>"10"  %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= f.text_field :address, :size=>"60" %></td>
+        </tr>
+        <tr>
+          <th>宛名</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+      </table>
+      <%= f.submit '登録する',class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<br><br>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <table class="table table-bordered">
+      <thead>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th></th>
+      </thead>
+      <% @addresses.each do |address| %>
+        <tbody>
+          <td><%= address.zipcode %></td>
+          <td><%= address.address %></td>
+          <td><%= address.name %></td>
+          <td>
+          <%= link_to '編集する', edit_address_path(address), class:"btn btn-primary" %>
+          <%# 論理削除にする %>
+          <%= link_to '削除する', root_path, class:"btn btn-primary" %>
+          </td>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>
