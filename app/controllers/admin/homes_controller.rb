@@ -1,4 +1,6 @@
 class Admin::HomesController < ApplicationController
+  
+  
   def index
     @orders = EndUser.all
     # created_at が今日に該当するデータのみを取り出す
