@@ -5,10 +5,11 @@
     <h3>本日の注文件数　　
       <%= link_to index_today_admin_orders_path do %>
       <%= @orders.count %>
-      <% end %>件
+      <% end %>件</h3>
+      <br>
       <br>
       <%= link_to admin_orders_path do %>
-      <p>全ての注文一覧</p>
+      <h4><p>全ての注文一覧</p></h4>
       <% end %>
     </h3>
   </div>

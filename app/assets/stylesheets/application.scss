@@ -27,6 +27,12 @@ body {
   font-family: 'Kosugi Maru', sans-serif;
 }
 
+// a
+a:link {color:rgb(107, 106, 105); text-decoration:none }
+a:visited { color:rgb(122, 119, 113); text-decoration:none }
+a:hover { color:rgb(83, 82, 80); text-decoration:none }
+a:active { color:white; text-decoration:none }
+
 // h1
 h1 {
   font-size: x-large;
@@ -104,7 +110,7 @@ header .container {
 // FOOTER
 footer {
   padding-top: 60px;
-  background-color: rgb(238, 229, 210);
+  background: linear-gradient(rgb(223, 207, 167),rgb(255, 255, 255));
 }
 
 footer a {
@@ -168,7 +174,7 @@ footer div {
 .btn-primary,
 .btn-primary.disabled,
 .btn-primary:disabled {
-  background: #c7a77f;
+  background: #c0b09d;
   border-color: #c7a77f;
 }
 
@@ -199,4 +205,18 @@ footer div {
 
 .field {
   padding: 4px;
+}
+
+.btn-danger,
+.btn-danger.disabled,
+.btn-danger:disabled {
+  background: #fdd7d7;
+  border-color: #fdd7d7;
+}
+
+.btn-success,
+.btn-success.disabled,
+.btn-success:disabled {
+  background: #c5f39b;
+  border-color: #c5f39b;
 }

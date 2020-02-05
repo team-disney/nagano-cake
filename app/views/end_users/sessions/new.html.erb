@@ -20,7 +20,7 @@
       <span class="small"><%= link_to '＝>パスワードを忘れた方はこちら', new_end_user_password_path %></span>
     </div>
   </div>
-  <p></p>
+  <br>
   <div class="row">
     <div class="col-sm-7 col-sm-offset-5">
       <%= f.submit "ログイン", class: "btn btn-primary" %>
@@ -28,13 +28,16 @@
   </div>
 <% end %>
 
-<p></p>
+<br><br>
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <h1>登録がお済みでない方</h1>
+    <br>
     <div class="col-sm-8 col-sm-offset-2">
       <strong><%= link_to 'こちら', new_end_user_registration_path %></strong>
       <%= "から新規登録を行ってください。"%>
     </div>
   </div>
 </div>
+
+<br><br><br>
